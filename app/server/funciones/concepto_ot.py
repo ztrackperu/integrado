@@ -1,4 +1,5 @@
 from server.database import collection
+from bson import regex
 
 collection_define ="conceptos_ot"
 concepto_ot_collection = collection(collection_define)
@@ -22,6 +23,12 @@ def concepto_ot_helper_validar(concepto_ot) -> dict:
     #print(concepto_ot["rela"])
     return {
         "descripcion": concepto_ot["descripcion"]
+    }
+def concepto_ot_helper_regex(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "codigo": concepto_ot["codigo"],
+        "text" : concepto_ot["descripcion"]
     }
 
 
@@ -96,6 +103,12 @@ async def validar_concepto_ot(data: dict):
         men ="ok"
     return men
 
-
-
+# Recuperar un concepto_ot con un ID coincidente
+async def regex_concepto_ot(id: str) -> dict:
+    concepto_ots = []
+    reg = "/^"+id+"$/i"
+    async for concepto_ot in concepto_ot_collection.find({"$and":[{"estado":1},{"descripcion":regex.Regex(reg) }]}).limit(10):
+        print(concepto_ot)
+        concepto_ots.append(concepto_ot_helper_regex(concepto_ot))
+    return concepto_ots
 

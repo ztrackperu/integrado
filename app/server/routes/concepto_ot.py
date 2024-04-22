@@ -87,3 +87,10 @@ async def add_concepto_ot_data_validar(concepto_ot: ConceptoOTSchemaValidar = Bo
     concepto_ot = jsonable_encoder(concepto_ot)   
     val_concepto_ot = await validar_concepto_ot(concepto_ot)
     return ResponseModel(val_concepto_ot, "El concepto_ot agregó exitosamente.")
+
+@router.get("/regex/{id}", response_description="Datos de conceptoOT con regex ")
+async def get_concepto_ot_regex(id: str):
+    concepto_ot = await retrieve_concepto_ot(str)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos del ConceptoOT recuperado en regex")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

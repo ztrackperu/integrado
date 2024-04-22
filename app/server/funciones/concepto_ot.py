@@ -110,8 +110,9 @@ async def regex_concepto_ot(des: str) :
     #reg = "/^"+des+"$/i"
     reg = "/^re$/i"
     print(reg)
-    async for concepto_ot in concepto_ot_collection.find({"$and":[{"estado":1},{"descripcion":regex.Regex(reg) }]}).limit(10):
+    async for concepto_ot in concepto_ot_collection.find({"estado":1}).limit(10):
         print(concepto_ot)
         concepto_ots.append(concepto_ot_helper_regex(concepto_ot))
     return concepto_ots
-
+#,{"descripcion":regex.Regex(reg) }
+#{"$and":[{"estado":1},{"descripcion":regex.Regex(reg) }]}

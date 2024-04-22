@@ -107,6 +107,7 @@ async def validar_concepto_ot(data: dict):
 async def regex_concepto_ot(id: str) -> dict:
     concepto_ots = []
     reg = "/^"+id+"$/i"
+    print(reg)
     async for concepto_ot in concepto_ot_collection.find({"$and":[{"estado":1},{"descripcion":regex.Regex(reg) }]}).limit(10):
         print(concepto_ot)
         concepto_ots.append(concepto_ot_helper_regex(concepto_ot))

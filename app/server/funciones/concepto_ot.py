@@ -13,7 +13,7 @@ def concepto_ot_helper(concepto_ot) -> dict:
         "id": concepto_ot["id"],
         "codigo": concepto_ot["codigo"],
         "descripcion": concepto_ot["descripcion"],
-        "estado": concepto_ot["estado"],
+        "estado":concepto_ot.get("estado",None),
         #Lista puede ser nula
         "insumos":  concepto_ot.get("insumos",None),
     }

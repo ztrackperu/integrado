@@ -8,7 +8,7 @@ class ConceptoOTSchema(BaseModel):
     id: int = Field(...)
     codigo: int = Field(...)
     descripcion: str = Field(...)
-    estado: Optional[int] | None =None
+    estado: int = Field(...)
     insumos: Optional[List] | None =None
 
     class Config:

@@ -6,7 +6,7 @@ MONGO_DETAILS = config("MONGO_DETAILS")  # read environment variable
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 #integrado es nombre para la base de datos
-DATA_BASE = config("DATA_BASE")
+#DATA_BASE = config("DATA_BASE")
 #database = client.DATA_BASE
 #print(DATA_BASE)
 database = client.integrado

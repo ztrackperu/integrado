@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
 #aqui pedimos las funciones que incluyen nuestro CRUD
-from server.database import (
+from server.funciones.student import (
     add_student,
     delete_student,
     retrieve_student,

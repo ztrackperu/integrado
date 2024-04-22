@@ -28,7 +28,7 @@ def student_helper(student) -> dict:
 # Retrieve all students present in the database
 async def retrieve_students():
     students = []
-    async for student in student_collection.find({"estado":1}):
+    async for student in student_collection.find():
         print(student)
         students.append(student_helper(student))
     return students

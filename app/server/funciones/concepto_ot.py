@@ -22,7 +22,7 @@ def concepto_ot_helper(concepto_ot) -> dict:
 # Recuperar todos los concepto_ots presentes en la base de datos.
 async def retrieve_concepto_ots():
     concepto_ots = []
-    async for concepto_ot in concepto_ot_collection.find():
+    async for concepto_ot in concepto_ot_collection.find({"estado":1}):
         #print(concepto_ot)
         concepto_ots.append(concepto_ot_helper(concepto_ot))
     return concepto_ots

@@ -1,6 +1,7 @@
 from server.database import collection
 
-concepto_ot_collection = collection("concepto_ots_collection")
+collection_define ="conceptos_ot"
+concepto_ot_collection = collection(collection_define)
 
 # helpers
 

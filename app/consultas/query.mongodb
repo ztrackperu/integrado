@@ -1,0 +1,11 @@
+use("students")
+
+db.students_collection.updateOne({
+    _id: ObjectId('6625491811dd6c0dce1de28b'),
+    },
+    {
+        $set: {
+            "gpa" : 2.1
+        }       
+    }
+)

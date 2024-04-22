@@ -104,7 +104,7 @@ async def validar_concepto_ot(data: dict):
     return men
 
 # Recuperar un concepto_ot con un ID coincidente
-async def regex_concepto_ot(id: str) -> dict:
+async def regex_concepto_ot(id: str) :
     concepto_ots = []
     print(id)
     reg = "/^"+id+"$/i"

@@ -9,7 +9,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 #DATA_BASE = config("DATA_BASE")
 #database = client.DATA_BASE
 #print(DATA_BASE)
-database = client.integrado
+database = client.intranet
 
 
 def collection(data):

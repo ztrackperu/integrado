@@ -71,7 +71,7 @@ class UpdateConceptoOTModel(BaseModel):
 #respuesta cuando todo esta bien
 def ResponseModel(data, message):
     return {
-        "data": [data],
+        "data": data,
         "code": 200,
         "message": message,
     }
@@ -80,3 +80,15 @@ def ResponseModel(data, message):
 #respuesta cuando algo sale mal 
 def ErrorResponseModel(error, code, message):
     return {"error": error, "code": code, "message": message}
+
+
+
+class ConceptoOTSchemaValidar(BaseModel):
+    #Field(...) hace referencia a que el campo es obligatorio
+    descripcion: str = Field(...)
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "descripcion": "MANTENIMIENTO MAQUINA REEFER",            
+            }
+        }

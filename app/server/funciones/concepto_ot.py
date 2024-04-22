@@ -23,7 +23,7 @@ def concepto_ot_helper(concepto_ot) -> dict:
 async def retrieve_concepto_ots():
     concepto_ots = []
     async for concepto_ot in concepto_ot_collection.find():
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(concepto_ot_helper(concepto_ot))
     return concepto_ots
 
@@ -64,3 +64,30 @@ async def delete_concepto_ot(id: int):
     if concepto_ot:
         await concepto_ot_collection.delete_one({"id": id})
         return True
+    
+# Extraer el ultimo  concepto_ot de la base de datos en base al campo id
+async def extraer_concepto_ot()->dict:
+    concepto_ots = []
+    async for concepto_ot in concepto_ot_collection.find().sort({"id":-1}).limit(1):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot_helper(concepto_ot))
+    return concepto_ots[0]
+
+
+# Validar  existencia  de un adescripcion en conceptosOT
+async def update_concepto_ot_validar(data: dict):
+    # Return false if an empty request body is sent.
+    if len(data) < 1:
+        return False
+    concepto_ot =retrieve_concepto_ots()
+    return data
+    
+    #concepto_ot = await concepto_ot_collection.find_one({"id": id})
+    #if concepto_ot:
+        #updated_concepto_ot = await concepto_ot_collection.update_one(
+         #   {"id": id}, {"$set": data}
+        #)
+        #if updated_concepto_ot:
+         #   return True
+        #return False
+

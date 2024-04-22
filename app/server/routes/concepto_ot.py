@@ -8,6 +8,8 @@ from server.funciones.concepto_ot import (
     retrieve_concepto_ot,
     retrieve_concepto_ots,
     update_concepto_ot,
+    extraer_concepto_ot,
+    update_concepto_ot_validar,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -15,6 +17,7 @@ from server.models.concepto_ot import (
     ResponseModel,
     ConceptoOTSchema,
     UpdateConceptoOTModel,
+    ConceptoOTSchemaValidar,
 )
 #aqui se definen las rutas de la API REST
 router = APIRouter()
@@ -68,3 +71,23 @@ async def delete_concepto_ot_data(id: int):
     return ErrorResponseModel(
         "An error occurred", 404, "concepto_ot with id {0} doesn't exist".format(id)
     )
+
+@router.get("/maximo/", response_description="El conceptoOT maximo")
+async def get_maximo_concepto_ot_data():
+    concepto_ot = await extraer_concepto_ot()
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos del ConceptoOT maximo recuperado ")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+
+@router.post("/validar/", response_description="Validar descripcion de  concepto_ot en la base de datos.")
+#La funcion espera "ConceptoOTSchema"
+async def add_concepto_ot_data(concepto_ot: ConceptoOTSchemaValidar = Body(...)):
+    #convertir en json
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    #print(concepto_ot)
+    #enviar a la funcion añadir  
+    new_concepto_ot = await update_concepto_ot_validar(concepto_ot)
+    print(concepto_ot)
+    #new_concepto_ot = concepto_ot
+    return ResponseModel(new_concepto_ot, "El concepto_ot agregó exitosamente.")

@@ -18,6 +18,14 @@ def concepto_ot_helper(concepto_ot) -> dict:
         "insumos":  concepto_ot.get("insumos",None),
     }
 
+def concepto_ot_helper_validar(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "descripcion": concepto_ot["descripcion"]
+    }
+
+
+
 # crud operation
 # Recuperar todos los concepto_ots presentes en la base de datos.
 async def retrieve_concepto_ots():
@@ -71,23 +79,23 @@ async def extraer_concepto_ot()->dict:
     async for concepto_ot in concepto_ot_collection.find().sort({"id":-1}).limit(1):
         #print(concepto_ot)
         concepto_ots.append(concepto_ot_helper(concepto_ot))
+    #se debe extraer el primir resultado
     return concepto_ots[0]
 
 
 # Validar  existencia  de un adescripcion en conceptosOT
-async def update_concepto_ot_validar(data: dict):
-    # Return false if an empty request body is sent.
+async def validar_concepto_ot(data: dict):
     if len(data) < 1:
         return False
-    concepto_ot =retrieve_concepto_ots()
-    return data
-    
-    #concepto_ot = await concepto_ot_collection.find_one({"id": id})
-    #if concepto_ot:
-        #updated_concepto_ot = await concepto_ot_collection.update_one(
-         #   {"id": id}, {"$set": data}
-        #)
-        #if updated_concepto_ot:
-         #   return True
-        #return False
+    concepto_ots = []
+    async for concepto_ot in concepto_ot_collection.find({"estado":1}):
+        concepto_ots.append(concepto_ot_helper_validar(concepto_ot))
+    if(data in concepto_ots):
+        men = "duplicado"
+    else:
+        men ="ok"
+    return men
+
+
+
 

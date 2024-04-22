@@ -9,7 +9,7 @@ from server.funciones.concepto_ot import (
     retrieve_concepto_ots,
     update_concepto_ot,
     extraer_concepto_ot,
-    update_concepto_ot_validar,
+    validar_concepto_ot,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -82,12 +82,7 @@ async def get_maximo_concepto_ot_data():
 
 @router.post("/validar/", response_description="Validar descripcion de  concepto_ot en la base de datos.")
 #La funcion espera "ConceptoOTSchema"
-async def add_concepto_ot_data(concepto_ot: ConceptoOTSchemaValidar = Body(...)):
-    #convertir en json
+async def add_concepto_ot_data_validar(concepto_ot: ConceptoOTSchemaValidar = Body(...)):
     concepto_ot = jsonable_encoder(concepto_ot)   
-    #print(concepto_ot)
-    #enviar a la funcion añadir  
-    new_concepto_ot = await update_concepto_ot_validar(concepto_ot)
-    print(concepto_ot)
-    #new_concepto_ot = concepto_ot
-    return ResponseModel(new_concepto_ot, "El concepto_ot agregó exitosamente.")
+    val_concepto_ot = await validar_concepto_ot(concepto_ot)
+    return ResponseModel(val_concepto_ot, "El concepto_ot agregó exitosamente.")

@@ -56,7 +56,8 @@ async def update_concepto_ot_data(id: int, req: UpdateConceptoOTModel = Body(...
     updated_concepto_ot = await update_concepto_ot(id, req)
     if updated_concepto_ot:
         return ResponseModel(
-            "ConceptoOT with ID: {} name update is successful".format(id),
+            #"ConceptoOT with ID: {} name update is successful".format(id),
+            "ok",
             "ConceptoOT name updated successfully",
         )
     return ErrorResponseModel("An error occurred",404,"There was an error updating the ConceptoOT data.",)

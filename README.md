@@ -2,7 +2,7 @@
 *Aspectos del git 
 git remote add origin https://github.com/ztrackperu/integrado.git
 git branch -M main
-git push -u origin main
+git push -u origin maingit
 
 *primero instalar python3.11
 *luego establEcer entorno virtual con env de pyhton 
@@ -17,3 +17,6 @@ pip install -r requirements.txt
 -> se requiere crear .env
 especificando la conexion a la base de datos
 MONGO_DETAILS="mongodb://localhost:27017"
+
+-> se ejecuta 
+python app/main.py

@@ -76,7 +76,7 @@ async def delete_concepto_ot(id: int):
 # Extraer el ultimo  concepto_ot de la base de datos en base al campo id
 async def extraer_concepto_ot()->dict:
     concepto_ots = []
-    async for concepto_ot in concepto_ot_collection.find().sort({"id":-1}).limit(1):
+    async for concepto_ot in concepto_ot_collection.find({"estado":1}).sort({"id":-1}).limit(1):
         #print(concepto_ot)
         concepto_ots.append(concepto_ot_helper(concepto_ot))
     #se debe extraer el primir resultado

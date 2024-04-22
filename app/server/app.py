@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 
 from server.routes.student import router as StudentRouter
+from server.routes.concepto_ot import router as ConceptoOTRouter
+
 
 app = FastAPI(
     title="Integracion Intranet",
@@ -11,6 +13,9 @@ app = FastAPI(
 
 #añadir el conjunto de archivos a StudentRouter con la url "student"
 app.include_router(StudentRouter, tags=["Student"], prefix="/student")
+
+app.include_router(ConceptoOTRouter, tags=["concepto_ot"], prefix="/concepto_ot")
+
 
 
 @app.get("/", tags=["Root"])

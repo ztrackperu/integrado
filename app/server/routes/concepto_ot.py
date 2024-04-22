@@ -31,7 +31,7 @@ async def add_concepto_ot_data(concepto_ot: ConceptoOTSchema = Body(...)):
     #print(concepto_ot)
     #enviar a la funcion añadir  
     new_concepto_ot = await add_concepto_ot(concepto_ot)
-    return ResponseModel(new_concepto_ot, "El concepto_ot agregó exitosamente.")
+    return ResponseModel(new_concepto_ot, "ok")
 
 @router.get("/", response_description="Concepto_ot recuperados")
 async def get_concepto_ots():

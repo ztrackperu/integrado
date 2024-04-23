@@ -28,7 +28,7 @@ def concepto_ot_helper_validar(concepto_ot) -> dict:
 def concepto_ot_helper_regex(concepto_ot) -> dict: 
     #print(concepto_ot["rela"])
     return {
-        "codigo": concepto_ot["codigo"],
+        "id": concepto_ot["codigo"],
         "text" : concepto_ot["descripcion"]
     }
 

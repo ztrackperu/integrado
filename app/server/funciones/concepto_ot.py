@@ -4,6 +4,7 @@ from bson import regex
 
 collection_define ="conceptos_ot"
 concepto_ot_collection = collection(collection_define)
+invmae_collection = collection("invmae")
 
 # helpers
 
@@ -30,6 +31,13 @@ def concepto_ot_helper_regex(concepto_ot) -> dict:
     return {
         "id": concepto_ot["codigo"],
         "text" : concepto_ot["descripcion"]
+    }
+
+def insumos_helper_regex(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "id": concepto_ot["IN_CODI"],
+        "text" : concepto_ot["IN_ARTI"]
     }
 
 
@@ -121,3 +129,12 @@ async def regex_concepto_ot(des:str) :
 #regex.Regex.from_native(re.compile(".*"))
 #{"$and":[{"estado":1},{"descripcion":regex.Regex.from_native(re.compile(".*"))}]}
 #{"descripcion":regex.Regex.from_native(re.compile(reg))}
+
+
+async def regex_insumo(des:str) :
+    concepto_ots = []
+    print(des)
+    async for concepto_ot in invmae_collection.find({"$and":[{"IN_ARTI":{'$regex':des,"$options" : 'i'}}]}).limit(30):
+        print(concepto_ot)
+        concepto_ots.append(insumos_helper_regex(concepto_ot))
+    return concepto_ots

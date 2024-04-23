@@ -91,7 +91,7 @@ async def add_concepto_ot_data_validar(concepto_ot: ConceptoOTSchemaValidar = Bo
 
 @router.get("/regex/{id}", response_description="Datos de conceptoOT con regex ")
 async def get_concepto_ot_regex(id: str):
-    concepto_ot = await regex_concepto_ot(str)
+    concepto_ot = await regex_concepto_ot(id)
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos del ConceptoOT recuperado en regex")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

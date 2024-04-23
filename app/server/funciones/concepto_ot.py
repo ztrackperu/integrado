@@ -54,6 +54,7 @@ async def add_concepto_ot(concepto_ot_data: dict) -> dict:
 
 # Recuperar un concepto_ot con un ID coincidente
 async def retrieve_concepto_ot(id: int) -> dict:
+    print(id)
     #importante convertir a int cunado se busca a un dato por numero
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
@@ -105,13 +106,13 @@ async def validar_concepto_ot(data: dict):
     return men
 
 # Recuperar un concepto_ot con un ID coincidente
-async def regex_concepto_ot(des: str) :
+async def regex_concepto_ot(des:str) :
     concepto_ots = []
     print(des)
     #reg = "/^"+des+"$/i"
-    reg = "/^re$/i"
-    print(reg)
-    async for concepto_ot in concepto_ot_collection.find({"$and":[{"estado":1},{"descripcion":regex.Regex.from_native(re.compile(reg))}]}).limit(10):
+    #reg = "conver"
+    #print(reg)
+    async for concepto_ot in concepto_ot_collection.find({"$and":[{"estado":1},{"descripcion":{'$regex':des,"$options" : 'i'}}]}).limit(10):
         print(concepto_ot)
         concepto_ots.append(concepto_ot_helper_regex(concepto_ot))
     return concepto_ots
@@ -119,3 +120,4 @@ async def regex_concepto_ot(des: str) :
 #{"$and":[{"estado":1},{"descripcion":regex.Regex(reg) }]}
 #regex.Regex.from_native(re.compile(".*"))
 #{"$and":[{"estado":1},{"descripcion":regex.Regex.from_native(re.compile(".*"))}]}
+#{"descripcion":regex.Regex.from_native(re.compile(reg))}

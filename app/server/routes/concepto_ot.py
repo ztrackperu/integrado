@@ -12,6 +12,7 @@ from server.funciones.concepto_ot import (
     validar_concepto_ot,
     regex_concepto_ot,
     regex_insumo,
+    validar_insumo_ot,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -103,3 +104,10 @@ async def get_concepto_ot_regex(id: str):
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de los insumos recuperado en regex")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.post("/validarInsumo/", response_description="Validar descripcion de  concepto_ot en la base de datos.")
+#La funcion espera "ConceptoOTSchema"
+async def add_insumo_data_validar(concepto_ot: dict = Body(...)):
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    val_concepto_ot = await validar_insumo_ot(concepto_ot)
+    return ResponseModel(val_concepto_ot, "Los insumo han sido validados ")

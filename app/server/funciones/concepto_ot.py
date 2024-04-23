@@ -1,4 +1,4 @@
-import re
+import json
 from server.database import collection
 from bson import regex
 
@@ -9,6 +9,18 @@ invmae_collection = collection("invmae")
 # helpers
 
 #esta es la estructura esperda que se imprime como resultado
+
+def insumo_helper(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        #no incluiremos el _id 
+        "IN_CODI": concepto_ot["IN_CODI"],
+        "IN_ARTI": concepto_ot["IN_ARTI"],
+        "IN_UVTA": concepto_ot["IN_UVTA"],
+        "IN_COST":concepto_ot.get("IN_COST",None),
+        #Lista puede ser nula
+        "IN_STOK":  concepto_ot.get("IN_STOK",None),
+    }
 def concepto_ot_helper(concepto_ot) -> dict: 
     #print(concepto_ot["rela"])
     return {
@@ -138,3 +150,28 @@ async def regex_insumo(des:str) :
         print(concepto_ot)
         concepto_ots.append(insumos_helper_regex(concepto_ot))
     return concepto_ots
+
+#validarInsumo
+
+async def validar_insumo_ot(data: dict):
+    if len(data) < 1:
+        return False
+    concepto_ots = []
+    men = data['data']
+    #crear cadena para consulta
+    cadena = '{"$or":['
+    for number in men:
+        print(number['id'])
+        cadena += '{"IN_CODI":"'+number['id']+'"},'
+    cadena = cadena[:-1]
+    cadena +=']}'
+    print(cadena)
+    cadena =json.loads(cadena)
+    print(cadena)
+    #construir un objetivo 
+    async for concepto_ot in invmae_collection.find(cadena):
+        concepto_ots.append(insumo_helper(concepto_ot))
+    print(concepto_ots)
+    return concepto_ots
+
+#{"$or":[{"estado":1},{"estado":0}]}

@@ -92,3 +92,4 @@ class ConceptoOTSchemaValidar(BaseModel):
                 "descripcion": "MANTENIMIENTO MAQUINA REEFER",            
             }
         }
+

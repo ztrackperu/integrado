@@ -10,6 +10,17 @@ invmae_collection = collection("invmae")
 
 #esta es la estructura esperda que se imprime como resultado
 
+def insumo_data(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        #no incluiremos el _id 
+        "nombre": concepto_ot["IN_ARTI"],
+        "codigo": concepto_ot["IN_CODI"],
+        "costo": concepto_ot["IN_COST"],
+        "medida":concepto_ot.get("IN_UVTA",None),
+        #Lista puede ser nula
+        "moneda":  concepto_ot.get("IN_MONE",None),
+    }
 def insumo_helper(concepto_ot) -> dict: 
     #print(concepto_ot["rela"])
     return {
@@ -86,6 +97,7 @@ async def update_concepto_ot(id: int, data: dict):
     # Return false if an empty request body is sent.
     if len(data) < 1:
         return False
+    
     concepto_ot = await concepto_ot_collection.find_one({"id": id})
     if concepto_ot:
         updated_concepto_ot = await concepto_ot_collection.update_one(
@@ -175,3 +187,7 @@ async def validar_insumo_ot(data: dict):
     return concepto_ots
 
 #{"$or":[{"estado":1},{"estado":0}]}
+async def codigo_insumo(des:str) :
+    concepto_ot = await invmae_collection.find_one({"IN_CODI":des})
+    if concepto_ot:
+        return insumo_data(concepto_ot) 

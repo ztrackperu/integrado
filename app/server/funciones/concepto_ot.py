@@ -68,7 +68,7 @@ def cotizacion_helper_regex(concepto_ot) -> dict:
     #print(concepto_ot["rela"])
     return {
         "id": concepto_ot["c_numped"],
-        "text" : concepto_ot["c_numped"] +" | "+concepto_ot["c_momcli"]
+        "text" : concepto_ot["c_numped"] +" | "+concepto_ot["c_nomcli"]
     }
 
 

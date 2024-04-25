@@ -6,7 +6,7 @@ collection_define ="conceptos_ot"
 concepto_ot_collection = collection(collection_define)
 invmae_collection = collection("invmae")
 pedicab_collection = collection("pedicab")
-
+promae_collection = collection("promae")
 # helpers
 
 #esta es la estructura esperda que se imprime como resultado
@@ -69,6 +69,14 @@ def cotizacion_helper_regex(concepto_ot) -> dict:
     return {
         "id": concepto_ot["c_numped"],
         "text" : concepto_ot["c_numped"] +" | "+concepto_ot["c_nomcli"]
+    }
+#proveedor_helper_regex
+
+def proveedor_helper_regex(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "id": concepto_ot["PR_NRUC"],
+        "text" : concepto_ot["PR_RAZO"]
     }
 
 
@@ -206,4 +214,12 @@ async def regex_cotizacion(des:str) :
     async for concepto_ot in pedicab_collection.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(cotizacion_helper_regex(concepto_ot))
+    return concepto_ots
+
+async def regex_proveedores(des:str) :
+    concepto_ots = []
+    print(des)
+    async for concepto_ot in promae_collection.find({"$and":[{"PR_RAZO":{'$regex':des,"$options" : 'i'}}]}).limit(30):
+        print(concepto_ot)
+        concepto_ots.append(proveedor_helper_regex(concepto_ot))
     return concepto_ots

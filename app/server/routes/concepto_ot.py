@@ -14,6 +14,7 @@ from server.funciones.concepto_ot import (
     regex_insumo,
     validar_insumo_ot,
     codigo_insumo,
+    regex_cotizacion,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -119,4 +120,11 @@ async def get_infoInsumo(id: str):
     concepto_ot = await codigo_insumo(id)
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de los insumos recuperado en regex")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get("/buscarCotizacion/{id}", response_description="Datos de insumos con regex ")
+async def get_cotizacion_regex(id: str):
+    concepto_ot = await regex_cotizacion(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de las cotizaciones recuperado en regex")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

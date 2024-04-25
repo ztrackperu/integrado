@@ -5,6 +5,7 @@ from bson import regex
 collection_define ="conceptos_ot"
 concepto_ot_collection = collection(collection_define)
 invmae_collection = collection("invmae")
+pedicab_collection = collection("pedicab")
 
 # helpers
 
@@ -63,6 +64,12 @@ def insumos_helper_regex(concepto_ot) -> dict:
         "text" : concepto_ot["IN_ARTI"]
     }
 
+def cotizacion_helper_regex(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "id": concepto_ot["c_numped"],
+        "text" : concepto_ot["c_numped"] +" | "+concepto_ot["c_momcli"]
+    }
 
 
 # crud operation
@@ -191,3 +198,12 @@ async def codigo_insumo(des:str) :
     concepto_ot = await invmae_collection.find_one({"IN_CODI":des})
     if concepto_ot:
         return insumo_data(concepto_ot) 
+    #regex_cotizacion
+
+async def regex_cotizacion(des:str) :
+    concepto_ots = []
+    print(des)
+    async for concepto_ot in pedicab_collection.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}}]}).limit(30):
+        print(concepto_ot)
+        concepto_ots.append(cotizacion_helper_regex(concepto_ot))
+    return concepto_ots

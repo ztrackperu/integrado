@@ -195,4 +195,5 @@ async def ListaTecnicoOT():
 async def ConceptoPeriodoF(concepto_ot: dict = Body(...)):
     concepto_ot = jsonable_encoder(concepto_ot)   
     val_concepto_ot = await concepto_filtrado_periodo(concepto_ot)
-    return ResponseModel(val_concepto_ot, "Los insumo han sido validados ")
+    return JSONResponse(val_concepto_ot)
+    #return ResponseModel(val_concepto_ot, "Los insumo han sido validados ")

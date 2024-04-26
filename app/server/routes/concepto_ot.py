@@ -207,7 +207,7 @@ async def buscarProductoOT(id: str):
         return ResponseModel(concepto_ot, "Datos de las cotizaciones recuperado en regex")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get("/buscarProveedor/{id}", response_description="Datos de insumos con regex ")
+@router.get("/buscarCodigo/{id}", response_description="Datos de insumos con regex ")
 async def codigo_dispositivoF(id: str):
     item_details = await codigo_dispositivo(id)
     if item_details:

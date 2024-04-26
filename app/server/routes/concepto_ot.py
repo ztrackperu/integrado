@@ -193,6 +193,7 @@ async def ListaTecnicoOT():
 
 @router.post("/ConceptoPeriodo/")
 async def ConceptoPeriodoF(data: dict):
+    print(data)
     item_details = await concepto_filtrado_periodo(data)
     if item_details:
         return JSONResponse(item_details)

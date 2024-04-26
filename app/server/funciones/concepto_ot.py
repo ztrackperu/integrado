@@ -585,11 +585,11 @@ async def concepto_filtrado_periodo() :
                     {"$count" : 'total'} 
                 ],
                 "2015":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2015"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2015"},}},
                     {"$count" : '2015'} 
                 ],
                 "2016":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2016"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2016"},}},
                     {"$count" : '2016'} 
                 ],
                 "2017":[

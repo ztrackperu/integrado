@@ -647,3 +647,44 @@ async def buscarProductoOTF(des:str):
     async for concepto_ot in invmae_collection.aggregate(pip):
         concepto_ots.append(insumos_helper_regex(concepto_ot))
     return concepto_ots
+invequipo = collection("invequipo")
+async def codigo_dispositivo(des:str) :
+    concepto_ots = []
+    pip = [
+        {"$project":{"_id":0,"c_idequipo":1,"c_nserie":1,"id_equipo_asignado":1,"c_codsitalm":1,"in_arti":1,"c_codprd":1}} ,
+        {
+            "$match": {
+            "c_codsit": { "$ne": "T" },
+            "c_nserie": {"$regex":des,"$options" : 'i'}
+            }
+        },
+        {
+            "$lookup": {
+                "from": "invequipo_asignados",
+                "localField": "id_equipo",
+                "foreignField": "c_idequipo",
+                "as": "codigo",
+                "pipeline": [
+                    {"$sort" :{"id" :-1}},
+                    {"$project":{"_id":0,"id_equipo_asignado":1}} ,   
+                    {"$limit" :1}
+                ]
+            },      
+        },
+        {
+            "$lookup": {
+                "from": "invmae",
+                "localField": 'c_codprd',
+                "foreignField": 'IN_CODI',
+                "as": "descripcion",
+                "pipeline": [
+                    {"$project":{"_id":0,"IN_ARTI":1}} ,
+                ]
+            },      
+        },
+    ]
+    concepto_ots = []
+    async for concepto_ot in dettabla.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots

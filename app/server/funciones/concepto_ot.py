@@ -685,7 +685,7 @@ async def codigo_dispositivo(des:str) :
         },
     ]
     concepto_ots = []
-    async for concepto_ot in dettabla.aggregate(pip):
+    async for concepto_ot in invequipo.aggregate(pip):
         #print(concepto_ot)
         concepto_ots.append(concepto_ot)
     return concepto_ots

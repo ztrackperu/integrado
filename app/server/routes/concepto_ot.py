@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
+
 
 #aqui pedimos las funciones que incluyen nuestro CRUD
 from server.funciones.concepto_ot import (
@@ -16,6 +18,12 @@ from server.funciones.concepto_ot import (
     codigo_insumo,
     regex_cotizacion,
     regex_proveedores,
+    ListaUnidadMedidaF,
+    ListaSolicitanteOTF,
+    ListaSupervisadoOTF,
+    ListaFormaPagoMF,
+    ListaPlazoMF,
+    ListaTecnicoOTF,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -135,4 +143,49 @@ async def get_proveedor_regex(id: str):
     concepto_ot = await regex_proveedores(id)
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de las cotizaciones recuperado en regex")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+
+#viene de la otra api
+
+@router.get('/ListaUnidadMedida')
+async def ListaUnidadMedida():
+    item_details = await ListaUnidadMedidaF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get('/ListaSolicitanteOT')
+async def ListaSolicitanteOT():
+    item_details = await ListaSolicitanteOTF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get('/ListaSupervisadoOT')
+async def ListaSupervisadoOT():
+    item_details = await ListaSupervisadoOTF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get('/ListaFormaPagoM')
+async def ListaFormaPagoM():
+    item_details = await ListaFormaPagoMF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get('/ListaPlazoM')
+async def ListaPlazoM():
+    item_details = await ListaPlazoMF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get('/ListaTecnicoOT')
+async def ListaTecnicoOT():
+    item_details = await ListaTecnicoOTF()
+    if item_details:
+        return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

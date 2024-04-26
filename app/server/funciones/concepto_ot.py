@@ -576,7 +576,8 @@ async def ListaTecnicoOTF():
 UNIONOFICIAL = collection("UNIONOFICIAL")
 async def concepto_filtrado_periodo(data: dict) :
     print(data)
-    actividad = "PINTADO GENERAL"
+    #actividad = "PINTADO GENERAL"
+    actividad = data['descripcion']
     pip = [
         {"$project":{"_id":0,"c_treal":1,"d_fcrea":1}},
         {"$match": {"c_treal" : actividad }}, 

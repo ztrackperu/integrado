@@ -593,35 +593,35 @@ async def concepto_filtrado_periodo() :
                     {"$count" : '2016'} 
                 ],
                 "2017":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2017"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2017"},}},
                     {"$count" : '2017'} 
                 ],
                 "2018":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2018"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2018"},}},
                     {"$count" : '2018'} 
                 ],
                 "2019":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2019"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2019"},}},
                     {"$count" : '2019'} 
                 ],
                 "2020":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2020"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2020"},}},
                     {"$count" : '2020'} 
                 ],
                 "2021":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2021"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2021"},}},
                     {"$count" : '2021'} 
                 ],
                 "2022":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2022"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2022"},}},
                     {"$count" : '2022'} 
                 ],
                 "2023":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2023"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2023"},}},
                     {"$count" : '2023'} 
                 ],
                 "2024":[
-                    {"$match": {"d_fcrea ": {"$regex" :"/2024"},}},
+                    {"$match": {"d_fcrea": {"$regex" :"/2024"},}},
                     {"$count" : '2024'} 
                 ],      
             }

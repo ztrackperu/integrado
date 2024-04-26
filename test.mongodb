@@ -1,0 +1,128 @@
+use("intranet")
+//db.cabeot.find({c_numot:1000028211})
+//db.detaot.find({c_numot:1000028211})
+//explain()
+//explain("executionStats")
+factor =4
+inicio = 1000000000+(5000)*(factor-1)+1
+fin =1000000000+(5000)*(factor)
+basedatos = 'O-c-d-nota-'+factor
+db.notmae.aggregate([
+    {$project:{_id:0,}},
+    //{$match: {c_numot: 1000028211}}, 
+    //$gte: 20, $lte: 25
+    {$match: {c_NumOT: {$gte: inicio, $lte: fin}}}, 
+    {
+        $lookup: {
+          from: 'notmov',
+          localField: 'NT_NDOC',
+          foreignField: 'NT_NDOC',
+          as: 'DetalleNota',
+
+        }
+    }, 
+    //agregamso el resultado en la coleccion dataot
+    {
+        $out :basedatos
+    }  
+])
+
+{
+
+        "Notas.NT_RESPO":'NAVARRO AYALA, ALBERT JOHANN',
+        d_fcrea : {$regex :"11/2023"}
+
+}
+{
+   
+    c_treal : "PINTADO GENERAL" ,
+    {d_fcrea : {$regex :"/02/2023"}}
+
+}
+
+{
+    $and:[
+        {"Notas.NT_RESPO":'NAVARRO AYALA, ALBERT JOHANN',},
+        {
+            $or:[
+                {d_fcrea :"01/11/2023"},
+                {d_fcrea :"02/11/2023"},
+                {d_fcrea :"03/11/2023"},
+                {d_fcrea :"04/11/2023"},
+                {d_fcrea :"05/11/2023"},
+                {d_fcrea :"06/11/2023"},
+                {d_fcrea :"07/11/2023"},
+                {d_fcrea :"08/11/2023"},
+                {d_fcrea :"09/11/2023"},
+                {d_fcrea :"10/11/2023"},
+                {d_fcrea :"11/11/2023"},
+                {d_fcrea :"12/11/2023"},
+                {d_fcrea :"13/11/2023"},
+                {d_fcrea :"14/11/2023"},
+                {d_fcrea :"15/11/2023"},
+                {d_fcrea :"16/11/2023"},
+                {d_fcrea :"17/11/2023"},
+                {d_fcrea :"18/11/2023"},
+                {d_fcrea :"19/11/2023"},
+                {d_fcrea :"20/11/2023"},
+                {d_fcrea :"21/11/2023"},
+                {d_fcrea :"22/11/2023"},
+                {d_fcrea :"23/11/2023"},
+                {d_fcrea :"24/11/2023"},
+                {d_fcrea :"25/11/2023"},
+                {d_fcrea :"26/11/2023"},
+                {d_fcrea :"27/11/2023"},
+                {d_fcrea :"28/11/2023"},
+                {d_fcrea :"29/11/2023"},
+                {d_fcrea :"30/11/2023"},
+                {d_fcrea :"31/11/2023"},
+            ]
+
+        }
+
+    ]
+}
+
+{
+
+    $and:[
+        {"Notas.NT_CCLI":'CLI00000298'},
+        {
+            $or:[
+                {d_fcrea :"01/11/2023"},
+                {d_fcrea :"02/11/2023"},
+                {d_fcrea :"03/11/2023"},
+                {d_fcrea :"04/11/2023"},
+                {d_fcrea :"05/11/2023"},
+                {d_fcrea :"06/11/2023"},
+                {d_fcrea :"07/11/2023"},
+                {d_fcrea :"08/11/2023"},
+                {d_fcrea :"09/11/2023"},
+                {d_fcrea :"10/11/2023"},
+                {d_fcrea :"11/11/2023"},
+                {d_fcrea :"12/11/2023"},
+                {d_fcrea :"13/11/2023"},
+                {d_fcrea :"14/11/2023"},
+                {d_fcrea :"15/11/2023"},
+                {d_fcrea :"16/11/2023"},
+                {d_fcrea :"17/11/2023"},
+                {d_fcrea :"18/11/2023"},
+                {d_fcrea :"19/11/2023"},
+                {d_fcrea :"20/11/2023"},
+                {d_fcrea :"21/11/2023"},
+                {d_fcrea :"22/11/2023"},
+                {d_fcrea :"23/11/2023"},
+                {d_fcrea :"24/11/2023"},
+                {d_fcrea :"25/11/2023"},
+                {d_fcrea :"26/11/2023"},
+                {d_fcrea :"27/11/2023"},
+                {d_fcrea :"28/11/2023"},
+                {d_fcrea :"29/11/2023"},
+                {d_fcrea :"30/11/2023"},
+                {d_fcrea :"31/11/2023"},
+            ]
+
+        }
+
+    ]
+}

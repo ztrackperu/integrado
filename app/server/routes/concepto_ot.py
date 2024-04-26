@@ -24,6 +24,7 @@ from server.funciones.concepto_ot import (
     ListaFormaPagoMF,
     ListaPlazoMF,
     ListaTecnicoOTF,
+    concepto_filtrado_periodo,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -186,6 +187,13 @@ async def ListaPlazoM():
 @router.get("/ListaTecnicoOT/")
 async def ListaTecnicoOT():
     item_details = await ListaTecnicoOTF()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get("/ConceptoPeriodo/")
+async def ConceptoPeriodoF():
+    item_details = await concepto_filtrado_periodo()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

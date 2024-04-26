@@ -573,3 +573,62 @@ async def ListaTecnicoOTF():
         #print(concepto_ot)
         concepto_ots.append(concepto_ot)
     return concepto_ots  
+UNIONOFICIAL = collection("UNIONOFICIAL")
+async def concepto_filtrado_periodo() :
+    actividad = "PINTADO GENERAL"
+    pip = [
+        {"$project":{"_id":0,"c_treal":1,"d_fcrea":1}},
+        {"$match": {"c_treal" : actividad }}, 
+        {
+            "$facet" : {
+                "total":[
+                    {"$count" : 'total'} 
+                ],
+                "2015":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2015"},}},
+                    {"$count" : '2015'} 
+                ],
+                "2016":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2016"},}},
+                    {"$count" : '2016'} 
+                ],
+                "2017":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2017"},}},
+                    {"$count" : '2017'} 
+                ],
+                "2018":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2018"},}},
+                    {"$count" : '2018'} 
+                ],
+                "2019":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2019"},}},
+                    {"$count" : '2019'} 
+                ],
+                "2020":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2020"},}},
+                    {"$count" : '2020'} 
+                ],
+                "2021":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2021"},}},
+                    {"$count" : '2021'} 
+                ],
+                "2022":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2022"},}},
+                    {"$count" : '2022'} 
+                ],
+                "2023":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2023"},}},
+                    {"$count" : '2023'} 
+                ],
+                "2024":[
+                    {"$match": {"d_fcrea ": {"$regex" :"/2024"},}},
+                    {"$count" : '2024'} 
+                ],      
+            }
+        }       
+    ]
+    concepto_ots = []
+    async for concepto_ot in UNIONOFICIAL.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots  

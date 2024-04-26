@@ -155,35 +155,35 @@ async def ListaUnidadMedida():
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get('/ListaSolicitanteOT')
+@router.get("/ListaSolicitanteOT/")
 async def ListaSolicitanteOT():
     item_details = await ListaSolicitanteOTF()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get('/ListaSupervisadoOT')
+@router.get("/ListaSupervisadoOT/")
 async def ListaSupervisadoOT():
     item_details = await ListaSupervisadoOTF()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get('/ListaFormaPagoM')
+@router.get("/ListaFormaPagoM/")
 async def ListaFormaPagoM():
     item_details = await ListaFormaPagoMF()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get('/ListaPlazoM')
+@router.get("/ListaPlazoM/")
 async def ListaPlazoM():
     item_details = await ListaPlazoMF()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
-@router.get('/ListaTecnicoOT')
+@router.get("/ListaTecnicoOT/")
 async def ListaTecnicoOT():
     item_details = await ListaTecnicoOTF()
     if item_details:

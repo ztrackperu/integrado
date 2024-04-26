@@ -515,23 +515,16 @@ async def ListaUnidadMedidaF() :
         concepto_ots.append(concepto_ot)
     return concepto_ots
 
-    #item_details = tab_unid.aggregate(pip)
-    #content1=[]
-    #for item in item_details :
-     #   content1.append(item)
-      #  print(item)
-    #return content1
-
 async def ListaSolicitanteOTF():
     pip = [
         {"$match": {"C_CODTAB": "UOT","C_ESTADO":1,"C_TIPITM":"S"}},  
         {"$project":{"_id":0,"C_NUMITM":1,"C_DESITM":1}},        
     ]
-    item_details = dettabla.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)
-    return content1
+    concepto_ots = []
+    async for concepto_ot in dettabla.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots
 
 
 async def ListaSupervisadoOTF():
@@ -540,21 +533,22 @@ async def ListaSupervisadoOTF():
         {"$project":{"_id":0,"C_NUMITM":1,"C_DESITM":1}},        
     ]
     item_details = dettabla.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)   
-    return content1    
+    concepto_ots = []
+    async for concepto_ot in dettabla.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots  
 
 async def ListaFormaPagoMF():
     pip = [
         {"$match": {"C_CODTAB": "CPO","C_ESTADO":1}},  
         {"$project":{"_id":0,"C_NUMITM":1,"C_DESITM":1}},        
     ]
-    item_details = dettabla.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)
-    return content1   
+    concepto_ots = []
+    async for concepto_ot in dettabla.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots 
 
 async def ListaPlazoMF():
     pip = [
@@ -562,11 +556,11 @@ async def ListaPlazoMF():
         {"$project":{"_id":0,"TP_CODI":1,"TP_DESC":1}},
         {"$sort":{"TP_DESC":1}}        
     ]
-    item_details = tab_pago.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)
-    return content1   
+    concepto_ots = []
+    async for concepto_ot in tab_pago.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots   
 
 async def ListaTecnicoOTF():
     pip = [
@@ -574,8 +568,8 @@ async def ListaTecnicoOTF():
         {"$project":{"_id":0,"C_NUMITM":1,"C_DESITM":1}},        
         {"$sort":{"descripcion":1}}        
     ]
-    item_details = dettabla.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)
-    return content1   
+    concepto_ots = []
+    async for concepto_ot in dettabla.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots  

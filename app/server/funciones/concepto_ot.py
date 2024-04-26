@@ -649,6 +649,7 @@ async def buscarProductoOTF(des:str):
     return concepto_ots
 invequipo = collection("invequipo")
 async def codigo_dispositivo(des:str) :
+    print(des)
     concepto_ots = []
     pip = [
         {"$project":{"_id":0,"c_idequipo":1,"c_nserie":1,"id_equipo_asignado":1,"c_codsitalm":1,"in_arti":1,"c_codprd":1}} ,

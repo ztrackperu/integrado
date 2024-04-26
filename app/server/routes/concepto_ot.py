@@ -208,7 +208,7 @@ async def buscarProductoOT(id: str):
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
 @router.get("/buscarCodigo/{id}", response_description="Datos de insumos con regex ")
-async def codigo_dispositivoF(id: str):
+async def codigo_dispositivoF(id:str):
     item_details = await codigo_dispositivo(id)
     if item_details:
         return JSONResponse(item_details)

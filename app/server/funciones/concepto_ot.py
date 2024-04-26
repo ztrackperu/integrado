@@ -495,7 +495,7 @@ async def regex_proveedores(des:str) :
     concepto_ots = []
     print(des)
     async for concepto_ot in promae_collection.find({"$and":[{"PR_RAZO":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(proveedor_helper_regex(concepto_ot))
     return concepto_ots
 
@@ -509,12 +509,18 @@ async def ListaUnidadMedidaF() :
     pip = [
         {"$project":{"_id":0,"TU_CODI":1,"TU_DESC":1}},
     ]
-    item_details = tab_unid.aggregate(pip)
-    content1=[]
-    for item in item_details :
-        content1.append(item)
-        print(item)
-    return content1
+    concepto_ots = []
+    async for concepto_ot in tab_unid.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots
+
+    #item_details = tab_unid.aggregate(pip)
+    #content1=[]
+    #for item in item_details :
+     #   content1.append(item)
+      #  print(item)
+    #return content1
 
 async def ListaSolicitanteOTF():
     pip = [

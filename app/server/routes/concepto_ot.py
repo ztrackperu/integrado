@@ -148,7 +148,7 @@ async def get_proveedor_regex(id: str):
 
 #viene de la otra api
 
-@router.get('/ListaUnidadMedida')
+@router.get("/ListaUnidadMedida/")
 async def ListaUnidadMedida():
     item_details = await ListaUnidadMedidaF()
     if item_details:

@@ -192,9 +192,9 @@ async def ListaTecnicoOT():
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
 @router.post("/ConceptoPeriodo/")
-async def ConceptoPeriodoF(data:ConceptoOTSchemaValidar):
-    concepto_ot = jsonable_encoder(data)   
-    print(concepto_ot)
+async def ConceptoPeriodoF(concepto_ot: dict = Body(...)):
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    #print(concepto_ot)
     item_details = await concepto_filtrado_periodo(concepto_ot)
     if item_details:
         return JSONResponse(item_details)

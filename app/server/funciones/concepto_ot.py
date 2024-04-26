@@ -81,6 +81,7 @@ def proveedor_helper_regex(concepto_ot) -> dict:
     }
 
 
+
 # crud operation
 # Recuperar todos los concepto_ots presentes en la base de datos.
 async def retrieve_concepto_ots():
@@ -573,6 +574,8 @@ async def ListaTecnicoOTF():
         #print(concepto_ot)
         concepto_ots.append(concepto_ot)
     return concepto_ots  
+
+
 UNIONOFICIAL = collection("UNIONOFICIAL")
 async def concepto_filtrado_periodo(data: dict) :
     print(data)
@@ -634,3 +637,13 @@ async def concepto_filtrado_periodo(data: dict) :
         #print(concepto_ot)
         concepto_ots.append(concepto_ot)
     return concepto_ots  
+
+async def buscarProductoOTF(des:str):
+    pip = [
+        {"$project":{"_id":0,"IN_CODI":1,"IN_ARTI":1}},
+        {"$match": {"IN_ARTI": {"$regex":des,"$options" : 'i'}}},      
+    ]
+    concepto_ots = []
+    async for concepto_ot in invmae_collection.aggregate(pip):
+        concepto_ots.append(insumos_helper_regex(concepto_ot))
+    return concepto_ots

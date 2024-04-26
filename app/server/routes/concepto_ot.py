@@ -25,6 +25,7 @@ from server.funciones.concepto_ot import (
     ListaPlazoMF,
     ListaTecnicoOTF,
     concepto_filtrado_periodo,
+    buscarProductoOTF
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -197,3 +198,11 @@ async def ConceptoPeriodoF(concepto_ot: dict = Body(...)):
     val_concepto_ot = await concepto_filtrado_periodo(concepto_ot)
     return JSONResponse(val_concepto_ot)
     #return ResponseModel(val_concepto_ot, "Los insumo han sido validados ")
+
+@router.get("/buscarProductoOT/{id}", response_description="Datos de insumos con regex ")
+async def buscarProductoOT(id: str):
+    concepto_ot = await buscarProductoOTF(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de las cotizaciones recuperado en regex")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+

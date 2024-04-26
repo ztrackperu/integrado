@@ -192,8 +192,8 @@ async def ListaTecnicoOT():
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
 @router.get("/ConceptoPeriodo/")
-async def ConceptoPeriodoF():
-    item_details = await concepto_filtrado_periodo()
+async def ConceptoPeriodoF(data: dict):
+    item_details = await concepto_filtrado_periodo(data)
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

@@ -574,7 +574,8 @@ async def ListaTecnicoOTF():
         concepto_ots.append(concepto_ot)
     return concepto_ots  
 UNIONOFICIAL = collection("UNIONOFICIAL")
-async def concepto_filtrado_periodo() :
+async def concepto_filtrado_periodo(data: dict) :
+    print(data)
     actividad = "PINTADO GENERAL"
     pip = [
         {"$project":{"_id":0,"c_treal":1,"d_fcrea":1}},

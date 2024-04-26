@@ -513,6 +513,7 @@ async def ListaUnidadMedidaF() :
     content1=[]
     for item in item_details :
         content1.append(item)
+        print(item)
     return content1
 
 async def ListaSolicitanteOTF():

@@ -12,6 +12,12 @@ promae_collection = collection("promae")
 
 #esta es la estructura esperda que se imprime como resultado
 
+def codigo_helper(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        "id": concepto_ot["c_idequipo"],
+        "text" : concepto_ot["c_nserie"]
+    }
 def insumo_data(concepto_ot) -> dict: 
     #print(concepto_ot["rela"])
     return {
@@ -647,7 +653,9 @@ async def buscarProductoOTF(des:str):
     async for concepto_ot in invmae_collection.aggregate(pip):
         concepto_ots.append(insumos_helper_regex(concepto_ot))
     return concepto_ots
+
 invequipo = collection("invequipo")
+
 async def codigo_dispositivo(des:str) :
     print(des)
     concepto_ots = []
@@ -688,4 +696,21 @@ async def codigo_dispositivo(des:str) :
     async for concepto_ot in invequipo.aggregate(pip):
         #print(concepto_ot)
         concepto_ots.append(concepto_ot)
+    return concepto_ots
+
+
+async def regex_codigoAlquilerVenta(des:str) :
+    concepto_ots = []
+    print(des)
+    async for concepto_ot in invequipo.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}},{"$or":[{"c_codsit":"A"},{"c_codsit":"V"}]}]}).limit(30):
+        print(concepto_ot)
+        concepto_ots.append(codigo_helper(concepto_ot))
+    return concepto_ots
+
+async def regex_codigoDisponible(des:str) :
+    concepto_ots = []
+    print(des)
+    async for concepto_ot in invequipo.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}},{"c_codsit":"D"}]}).limit(30):
+        print(concepto_ot)
+        concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots

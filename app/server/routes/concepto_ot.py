@@ -26,7 +26,9 @@ from server.funciones.concepto_ot import (
     ListaTecnicoOTF,
     concepto_filtrado_periodo,
     buscarProductoOTF,
-    codigo_dispositivo
+    codigo_dispositivo,
+    regex_codigoAlquilerVenta,
+    regex_codigoDisponible
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -212,4 +214,18 @@ async def codigo_dispositivoF(id:str):
     item_details = await codigo_dispositivo(id)
     if item_details:
         return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get("/buscarCodigoAlquilerVenta/{id}", response_description="Datos de insumos con regex ")
+async def regex_codigoAlquilerVentaF(id: str):
+    concepto_ot = await regex_codigoAlquilerVenta(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de CodigoAlquilerVenta recuperado en regex")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get("/buscarCodigoDisponible/{id}", response_description="Datos de insumos con regex ")
+async def regex_codigoDisponibleF(id: str):
+    concepto_ot = await regex_codigoDisponible(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de CodigoDisponible recuperado en regex")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

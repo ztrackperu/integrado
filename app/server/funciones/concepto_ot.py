@@ -702,7 +702,7 @@ async def codigo_dispositivo(des:str) :
 async def regex_codigoAlquilerVenta(des:str) :
     concepto_ots = []
     print(des)
-    async for concepto_ot in invequipo.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}},{"$or":[{"c_codsit":"A"},{"c_codsit":"V"}]}]}).limit(30):
+    async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"$or":[{"c_codsit":"A"},{"c_codsit":"V"}]}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots
@@ -710,7 +710,7 @@ async def regex_codigoAlquilerVenta(des:str) :
 async def regex_codigoDisponible(des:str) :
     concepto_ots = []
     print(des)
-    async for concepto_ot in invequipo.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}},{"c_codsit":"D"}]}).limit(30):
+    async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"c_codsit":"D"}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots

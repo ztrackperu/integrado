@@ -714,3 +714,50 @@ async def regex_codigoDisponible(des:str) :
         print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots
+
+# ESTA SECUENCIA VALIDA LOS DATOS Y BUSCA LOS CAMPOS PARA ASIGNARLOS EN LA OT
+
+async def regex_buscarCodigo(dato:str) :
+    print(dato)
+    concepto_ots = []
+    pip = [
+        {
+            "$match": {
+            "c_nserie": {"$regex":dato,"$options" : 'i'}
+            }
+        },
+        {"$project":{"_id":0,"c_idequipo":1,"c_nserie":1,"c_codprd":1}} ,
+        {
+            "$lookup": {
+                "from": "invequipo_asignados",
+                "localField": "c_idequipo",  
+                "foreignField": "id_equipo",
+                "as": "codigo",
+                "pipeline": [
+                    {"$sort" :{"id" :-1}},
+                    {"$project":{"_id":0,"id_equipo_asignado":1}} ,   
+                    {"$limit" :10}
+                ]
+            },      
+        },
+        {
+            "$lookup": {
+                "from": "invmae",
+                "localField": 'c_codprd',
+                "foreignField": 'IN_CODI',
+                "as": "des",
+                "pipeline": [
+                    {"$project":{"_id":0,"IN_ARTI":1}} ,
+                ]
+            },      
+        },
+    ]
+    concepto_ots = []
+    async for concepto_ot in invequipo.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots
+
+
+
+

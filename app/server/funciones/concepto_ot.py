@@ -785,8 +785,13 @@ async def retrieve_stock_validar(id: int) -> dict:
             if valStock : 
                 print("hay stock")
                 print(valStock['Stock'])
+                datoStock = valStock['Stock']
             else : 
                 print("sin stock :(")
+                datoStock = 0
+            dataS['stock']=datoStock
+            print(dataS)
+
             #print(valStock)
         #print(depurar.insumos)
         return depurar

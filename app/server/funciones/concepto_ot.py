@@ -758,6 +758,9 @@ async def regex_buscarCodigo(dato:str) :
         concepto_ots.append(concepto_ot)
     return concepto_ots
 
+#aqui va a la coleccion de stock 
+stock_almacen = collection("stock_almacen")
+
 #aqui va la validacion de stock 
 async def retrieve_stock_validar(id: int) -> dict:
     print(id)
@@ -771,11 +774,15 @@ async def retrieve_stock_validar(id: int) -> dict:
         print(depurar['insumos'])
         #atrapamos el array de insumos 
         arrayInsumos =depurar['insumos']
-        print("aqui datito")
+        #print("aqui datito")
         print(arrayInsumos[0])
         for dataS in arrayInsumos :
-            print("oli")
-            print(dataS['IN_CODI'])
+            #print("oli")
+            #aqui capturar dato de codigo para  agregarlo como stock 
+            analizar = dataS['IN_CODI']
+            #print(dataS['IN_CODI'])
+            valStock = await stock_almacen.find_one({"Codigo": str(analizar)})
+            print(valStock)
         #print(depurar.insumos)
         return depurar
 

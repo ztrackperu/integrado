@@ -784,6 +784,7 @@ async def retrieve_stock_validar(id: int) -> dict:
             valStock = await stock_almacen.find_one({"Codigo": str(analizar)})
             if valStock : 
                 print("hay stock")
+                print(valStock['Stock'])
             else : 
                 print("sin stock :(")
             #print(valStock)

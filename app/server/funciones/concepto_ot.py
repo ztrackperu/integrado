@@ -807,7 +807,7 @@ def insumo_helper_OT(concepto_ot) -> dict:
         "IN_UVTA": concepto_ot["Unidad Medida"],
         "IN_COST":concepto_ot.get("IN_COST",None),
         #Lista puede ser nula
-        "Stock":  concepto_ot.get("Stock",None),
+        "stock":  concepto_ot.get("Stock",None),
     }
 
 #AQUI SE VALIDA STOCK PARA AGREGAR INSUMO EXTRA EN OT 

@@ -108,7 +108,7 @@ async def add_concepto_ot(concepto_ot_data: dict) -> dict:
 
 # Recuperar un concepto_ot con un ID coincidente
 async def retrieve_concepto_ot(id: int) -> dict:
-    print(id)
+    #print(id)
     #importante convertir a int cunado se busca a un dato por numero
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
@@ -182,7 +182,7 @@ async def regex_insumo(des:str) :
     concepto_ots = []
     #print(des)
     async for concepto_ot in invmae_collection.find({"$and":[{"IN_ARTI":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(insumos_helper_regex(concepto_ot))
     return concepto_ots
 
@@ -196,7 +196,7 @@ async def validar_insumo_ot(data: dict):
     #crear cadena para consulta
     cadena = '{"$or":['
     for number in men:
-        print(number['id'])
+        #print(number['id'])
         cadena += '{"IN_CODI":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
@@ -382,7 +382,7 @@ async def add_concepto_ot(concepto_ot_data: dict) -> dict:
 
 # Recuperar un concepto_ot con un ID coincidente
 async def retrieve_concepto_ot(id: int) -> dict:
-    print(id)
+    #print(id)
     #importante convertir a int cunado se busca a un dato por numero
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
@@ -456,7 +456,7 @@ async def regex_insumo(des:str) :
     concepto_ots = []
     #print(des)
     async for concepto_ot in invmae_collection.find({"$and":[{"IN_ARTI":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(insumos_helper_regex(concepto_ot))
     return concepto_ots
 
@@ -470,7 +470,7 @@ async def validar_insumo_ot(data: dict):
     #crear cadena para consulta
     cadena = '{"$or":['
     for number in men:
-        print(number['id'])
+        #print(number['id'])
         cadena += '{"IN_CODI":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
@@ -539,7 +539,7 @@ async def ListaSupervisadoOTF():
         {"$match": {"C_CODTAB": "UOT","C_ESTADO":1,"C_ABRITM":"U"}},  
         {"$project":{"_id":0,"C_NUMITM":1,"C_DESITM":1}},        
     ]
-    item_details = dettabla.aggregate(pip)
+    #item_details = dettabla.aggregate(pip)
     concepto_ots = []
     async for concepto_ot in dettabla.aggregate(pip):
         #print(concepto_ot)
@@ -703,7 +703,7 @@ async def regex_codigoAlquilerVenta(des:str) :
     concepto_ots = []
     #print(des)
     async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"$or":[{"c_codsit":"A"},{"c_codsit":"V"}]}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots
 
@@ -711,7 +711,7 @@ async def regex_codigoDisponible(des:str) :
     concepto_ots = []
     #print(des)
     async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"c_codsit":"D"}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
     return concepto_ots
 

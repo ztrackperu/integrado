@@ -805,6 +805,7 @@ async def validar_insumo_ot2(data: dict):
         return False
     concepto_ots = []
     men = data['data']
+    print(men)
     #crear cadena para consulta
     cadena = '{"$or":['
     for number in men:

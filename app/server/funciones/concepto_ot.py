@@ -763,7 +763,7 @@ stock_almacen = collection("stock_almacen")
 
 #aqui va la validacion de stock 
 async def retrieve_stock_validar(id: int) -> dict:
-    print(id)
+    #print(id)
     #importante convertir a int cunado se busca a un dato por numero
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
@@ -782,7 +782,11 @@ async def retrieve_stock_validar(id: int) -> dict:
             analizar = dataS['IN_CODI']
             #print(dataS['IN_CODI'])
             valStock = await stock_almacen.find_one({"Codigo": str(analizar)})
-            print(valStock)
+            if valStock : 
+                print("hay stock")
+            else : 
+                print("sin stock :(")
+            #print(valStock)
         #print(depurar.insumos)
         return depurar
 

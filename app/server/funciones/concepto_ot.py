@@ -769,7 +769,7 @@ async def retrieve_stock_validar(id: int) -> dict:
         #return concepto_ot_helper(concepto_ot) 
         depurar = concepto_ot_helper(concepto_ot) 
         print(depurar['insumos'])
-        print(depurar.insumos)
+        #print(depurar.insumos)
         return depurar
 
 

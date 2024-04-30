@@ -29,7 +29,8 @@ from server.funciones.concepto_ot import (
     codigo_dispositivo,
     regex_codigoAlquilerVenta,
     regex_codigoDisponible,
-    regex_buscarCodigo
+    regex_buscarCodigo,
+    retrieve_stock_validar
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -236,4 +237,14 @@ async def regex_buscarCodigoF(id:str):
     item_details = await regex_buscarCodigo(id)
     if item_details:
         return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+#aqui va la los datos recuperados con stock 
+
+@router.get("/StockValidado/{id}", response_description="Datos con stock  recuperados")
+async def get_concepto_ot_data(id: int):
+    concepto_ot = await retrieve_stock_validar(id)
+    
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de la plantilla con  Stock  recuperado exitosamente")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

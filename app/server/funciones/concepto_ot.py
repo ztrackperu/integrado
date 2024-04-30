@@ -758,6 +758,18 @@ async def regex_buscarCodigo(dato:str) :
         concepto_ots.append(concepto_ot)
     return concepto_ots
 
+#aqui va la validacion de stock 
+async def retrieve_stock_validar(id: int) -> dict:
+    print(id)
+    #importante convertir a int cunado se busca a un dato por numero
+    concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
+    #print(concepto_ot)
+    if concepto_ot:
+        print(concepto_ot)
+        #return concepto_ot_helper(concepto_ot) 
+        return concepto_ot
+
+
 
 
 

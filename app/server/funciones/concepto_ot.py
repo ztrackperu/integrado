@@ -766,8 +766,8 @@ async def retrieve_stock_validar(id: int) -> dict:
     #print(concepto_ot)
     if concepto_ot:
         print(concepto_ot)
-        #return concepto_ot_helper(concepto_ot) 
-        return concepto_ot
+        return concepto_ot_helper(concepto_ot) 
+        #return concepto_ot
 
 
 

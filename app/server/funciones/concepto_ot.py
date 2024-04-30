@@ -771,6 +771,7 @@ async def retrieve_stock_validar(id: int) -> dict:
         print(depurar['insumos'])
         #atrapamos el array de insumos 
         arrayInsumos =depurar['insumos']
+        print(arrayInsumos[0])
         for dataS in arrayInsumos :
             print("oli")
             print(dataS['IN_CODI'])

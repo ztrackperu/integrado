@@ -802,9 +802,9 @@ def insumo_helper_OT(concepto_ot) -> dict:
     #print(concepto_ot["rela"])
     return {
         #no incluiremos el _id 
-        "Codigo": concepto_ot["Codigo"],
-        "Descripcion": concepto_ot["Descripcion"],
-        "Unidad_Medida": concepto_ot["Unidad Medida"],
+        "IN_CODI": concepto_ot["Codigo"],
+        "IN_ARTI": concepto_ot["Descripcion"],
+        "IN_UVTA": concepto_ot["Unidad Medida"],
         "IN_COST":concepto_ot.get("IN_COST",None),
         #Lista puede ser nula
         "Stock":  concepto_ot.get("Stock",None),

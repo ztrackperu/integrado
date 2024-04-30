@@ -797,7 +797,18 @@ async def retrieve_stock_validar(id: int) -> dict:
             #print(valStock)
         #print(depurar.insumos)
         return depurar
-
+# HELPER PAR VALIDAR INSUMOS DE OT 
+def insumo_helper_OT(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        #no incluiremos el _id 
+        "Codigo": concepto_ot["Codigo"],
+        "Descripcion": concepto_ot["Descripcion"],
+        "Unidad_Medida": concepto_ot["Unidad Medida"],
+        "IN_COST":concepto_ot.get("IN_COST",None),
+        #Lista puede ser nula
+        "Stock":  concepto_ot.get("Stock",None),
+    }
 
 #AQUI SE VALIDA STOCK PARA AGREGAR INSUMO EXTRA EN OT 
 async def validar_insumo_ot2(data: dict):
@@ -817,8 +828,8 @@ async def validar_insumo_ot2(data: dict):
     cadena =json.loads(cadena)
     #print(cadena)
     #construir un objetivo 
-    async for concepto_ot in invmae_collection.find(cadena):
-        concepto_ots.append(insumo_helper(concepto_ot))
+    async for concepto_ot in stock_almacen.find(cadena):
+        concepto_ots.append(insumo_helper_OT(concepto_ot))
     #print(concepto_ots)
     return concepto_ots
 

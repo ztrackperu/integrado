@@ -821,7 +821,7 @@ async def validar_insumo_ot2(data: dict):
     cadena = '{"$or":['
     for number in men:
         #print(number['id'])
-        cadena += '{"IN_CODI":"'+number['id']+'"},'
+        cadena += '{"Codigo":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
     #print(cadena)

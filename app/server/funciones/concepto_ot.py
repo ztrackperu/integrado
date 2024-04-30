@@ -765,9 +765,11 @@ async def retrieve_stock_validar(id: int) -> dict:
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
     if concepto_ot:
-        print(concepto_ot)
-        return concepto_ot_helper(concepto_ot) 
-        #return concepto_ot
+        #print(concepto_ot)
+        #return concepto_ot_helper(concepto_ot) 
+        depurar = concepto_ot_helper(concepto_ot) 
+        print(depurar)
+        return depurar
 
 
 

@@ -163,7 +163,7 @@ async def validar_concepto_ot(data: dict):
 # Recuperar un concepto_ot con un ID coincidente
 async def regex_concepto_ot(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     #reg = "/^"+des+"$/i"
     #reg = "conver"
     #print(reg)
@@ -180,7 +180,7 @@ async def regex_concepto_ot(des:str) :
 
 async def regex_insumo(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in invmae_collection.find({"$and":[{"IN_ARTI":{'$regex':des,"$options" : 'i'}}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(insumos_helper_regex(concepto_ot))
@@ -200,13 +200,13 @@ async def validar_insumo_ot(data: dict):
         cadena += '{"IN_CODI":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
-    print(cadena)
+    #print(cadena)
     cadena =json.loads(cadena)
-    print(cadena)
+    #print(cadena)
     #construir un objetivo 
     async for concepto_ot in invmae_collection.find(cadena):
         concepto_ots.append(insumo_helper(concepto_ot))
-    print(concepto_ots)
+    #print(concepto_ots)
     return concepto_ots
 
 #{"$or":[{"estado":1},{"estado":0}]}
@@ -218,17 +218,17 @@ async def codigo_insumo(des:str) :
 
 async def regex_cotizacion(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in pedicab_collection.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(cotizacion_helper_regex(concepto_ot))
     return concepto_ots
 
 async def regex_proveedores(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in promae_collection.find({"$and":[{"PR_RAZO":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(proveedor_helper_regex(concepto_ot))
     return concepto_ots
 
@@ -437,7 +437,7 @@ async def validar_concepto_ot(data: dict):
 # Recuperar un concepto_ot con un ID coincidente
 async def regex_concepto_ot(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     #reg = "/^"+des+"$/i"
     #reg = "conver"
     #print(reg)
@@ -454,7 +454,7 @@ async def regex_concepto_ot(des:str) :
 
 async def regex_insumo(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in invmae_collection.find({"$and":[{"IN_ARTI":{'$regex':des,"$options" : 'i'}}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(insumos_helper_regex(concepto_ot))
@@ -474,13 +474,13 @@ async def validar_insumo_ot(data: dict):
         cadena += '{"IN_CODI":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
-    print(cadena)
+    #print(cadena)
     cadena =json.loads(cadena)
-    print(cadena)
+    #print(cadena)
     #construir un objetivo 
     async for concepto_ot in invmae_collection.find(cadena):
         concepto_ots.append(insumo_helper(concepto_ot))
-    print(concepto_ots)
+    #print(concepto_ots)
     return concepto_ots
 
 #{"$or":[{"estado":1},{"estado":0}]}
@@ -492,15 +492,15 @@ async def codigo_insumo(des:str) :
 
 async def regex_cotizacion(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in pedicab_collection.find({"$and":[{"c_numped":{'$regex':des,"$options" : 'i'}}]}).limit(30):
-        print(concepto_ot)
+        #print(concepto_ot)
         concepto_ots.append(cotizacion_helper_regex(concepto_ot))
     return concepto_ots
 
 async def regex_proveedores(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in promae_collection.find({"$and":[{"PR_RAZO":{'$regex':des,"$options" : 'i'}}]}).limit(30):
         #print(concepto_ot)
         concepto_ots.append(proveedor_helper_regex(concepto_ot))
@@ -584,7 +584,7 @@ async def ListaTecnicoOTF():
 
 UNIONOFICIAL = collection("UNIONOFICIAL")
 async def concepto_filtrado_periodo(data: dict) :
-    print(data)
+    #print(data)
     #actividad = "PINTADO GENERAL"
     actividad = data['descripcion']
     pip = [
@@ -657,7 +657,7 @@ async def buscarProductoOTF(des:str):
 invequipo = collection("invequipo")
 
 async def codigo_dispositivo(des:str) :
-    print(des)
+    #print(des)
     concepto_ots = []
     pip = [
         {"$project":{"_id":0,"c_idequipo":1,"c_nserie":1,"id_equipo_asignado":1,"c_codsitalm":1,"in_arti":1,"c_codprd":1}} ,
@@ -701,7 +701,7 @@ async def codigo_dispositivo(des:str) :
 
 async def regex_codigoAlquilerVenta(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"$or":[{"c_codsit":"A"},{"c_codsit":"V"}]}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
@@ -709,7 +709,7 @@ async def regex_codigoAlquilerVenta(des:str) :
 
 async def regex_codigoDisponible(des:str) :
     concepto_ots = []
-    print(des)
+    #print(des)
     async for concepto_ot in invequipo.find({"$and":[{"c_nserie":{'$regex':des,"$options" : 'i'}},{"c_codsit":"D"}]}).limit(30):
         print(concepto_ot)
         concepto_ots.append(codigo_helper(concepto_ot))
@@ -718,7 +718,7 @@ async def regex_codigoDisponible(des:str) :
 # ESTA SECUENCIA VALIDA LOS DATOS Y BUSCA LOS CAMPOS PARA ASIGNARLOS EN LA OT
 
 async def regex_buscarCodigo(dato:str) :
-    print(dato)
+    #print(dato)
     concepto_ots = []
     pip = [
         {
@@ -768,6 +768,7 @@ async def retrieve_stock_validar(id: int) -> dict:
         print(concepto_ot)
         #return concepto_ot_helper(concepto_ot) 
         return concepto_ot
+
 
 
 

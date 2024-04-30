@@ -775,7 +775,7 @@ async def retrieve_stock_validar(id: int) -> dict:
         #atrapamos el array de insumos 
         arrayInsumos =depurar['insumos']
         #print("aqui datito")
-        #print(arrayInsumos[0])
+        print(arrayInsumos[0])
         for dataS in arrayInsumos :
             #print("oli")
             #aqui capturar dato de codigo para  agregarlo como stock 
@@ -796,6 +796,29 @@ async def retrieve_stock_validar(id: int) -> dict:
             #print(valStock)
         #print(depurar.insumos)
         return depurar
+
+
+#AQUI SE VALIDA STOCK PARA AGREGAR INSUMO EXTRA EN OT 
+async def validar_insumo_ot2(data: dict):
+    if len(data) < 1:
+        return False
+    concepto_ots = []
+    men = data['data']
+    #crear cadena para consulta
+    cadena = '{"$or":['
+    for number in men:
+        #print(number['id'])
+        cadena += '{"IN_CODI":"'+number['id']+'"},'
+    cadena = cadena[:-1]
+    cadena +=']}'
+    #print(cadena)
+    cadena =json.loads(cadena)
+    #print(cadena)
+    #construir un objetivo 
+    async for concepto_ot in invmae_collection.find(cadena):
+        concepto_ots.append(insumo_helper(concepto_ot))
+    #print(concepto_ots)
+    return concepto_ots
 
 
 

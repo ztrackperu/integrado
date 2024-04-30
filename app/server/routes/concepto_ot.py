@@ -30,7 +30,8 @@ from server.funciones.concepto_ot import (
     regex_codigoAlquilerVenta,
     regex_codigoDisponible,
     regex_buscarCodigo,
-    retrieve_stock_validar
+    retrieve_stock_validar,
+    validar_insumo_ot2
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -248,3 +249,11 @@ async def get_concepto_ot_data(id: int):
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de la plantilla con  Stock  recuperado exitosamente")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+
+@router.post("/validarInsumoOT/", response_description="Validar descripcion de  concepto_ot en la base de datos.")
+#La funcion espera "ConceptoOTSchema"
+async def add_insumo_data_validar_OT(concepto_ot: dict = Body(...)):
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    val_concepto_ot = await validar_insumo_ot2(concepto_ot)
+    return ResponseModel(val_concepto_ot, "Los insumo OT han sido validados ")

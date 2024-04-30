@@ -775,13 +775,14 @@ async def retrieve_stock_validar(id: int) -> dict:
         #atrapamos el array de insumos 
         arrayInsumos =depurar['insumos']
         #print("aqui datito")
-        print(arrayInsumos[0])
+        #print(arrayInsumos[0])
         for dataS in arrayInsumos :
             #print("oli")
             #aqui capturar dato de codigo para  agregarlo como stock 
             analizar = dataS['IN_CODI']
             #print(dataS['IN_CODI'])
             valStock = await stock_almacen.find_one({"Codigo": str(analizar)})
+            print(valStock)
             if valStock : 
                 #print("hay stock")
                 #print(valStock['Stock'])
@@ -791,7 +792,7 @@ async def retrieve_stock_validar(id: int) -> dict:
                 datoStock = 0
             dataS['stock']=datoStock
             #print(dataS)
-        print(depurar)
+        #print(depurar)
 
             #print(valStock)
         #print(depurar.insumos)

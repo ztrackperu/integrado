@@ -859,10 +859,10 @@ async def validar_insumo_ot2(data: dict):
         concepto_ots1.append(concepto_ot)
     print(concepto_ots1)    
 
-    async for concepto_ot in stock_almacen.find(cadena):
-        concepto_ots.append(insumo_helper_OT(concepto_ot))
-    print(concepto_ots)
-    return concepto_ots
+    #async for concepto_ot in stock_almacen.find(cadena):
+        #concepto_ots.append(insumo_helper_OT(concepto_ot))
+    #print(concepto_ots)
+    return concepto_ots1
 
 
 

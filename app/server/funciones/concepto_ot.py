@@ -836,6 +836,34 @@ async def validar_insumo_ot2(data: dict):
     print(concepto_ots)
     return concepto_ots
 
+#cuando el documento esta vacio y se quiere validar
+async def validar_insumo_ot2(data: dict):
+    if len(data) < 1:
+        return False
+    concepto_ots = []
+    concepto_ots1 = []
+    men = data['data']
+    print(men)
+    #crear cadena para consulta
+    cadena = '{"$or":['
+    for number in men:
+        #print(number['id'])
+        cadena += '{"Codigo":"'+number['id']+'"},'
+    cadena = cadena[:-1]
+    cadena +=']}'
+    #print(cadena)
+    cadena =json.loads(cadena)
+    print(cadena)
+    #tomar los datos de la tabal insumos general y agtregarle el stock si lo hubiese
+    async for concepto_ot in invmae_collection.find(cadena):
+        concepto_ots1.append(concepto_ot)
+    print(concepto_ots1)    
+
+    async for concepto_ot in stock_almacen.find(cadena):
+        concepto_ots.append(insumo_helper_OT(concepto_ot))
+    print(concepto_ots)
+    return concepto_ots
+
 
 
 

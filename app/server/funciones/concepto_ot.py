@@ -844,11 +844,11 @@ async def validar_insumo_ot2(data: dict):
     concepto_ots1 = []
     men = data['data']
     print(men)
-    #crear cadena para consulta
+    #crear cadena para consulta con stock /invmae primero
     cadena = '{"$or":['
     for number in men:
         #print(number['id'])
-        cadena += '{"Codigo":"'+number['id']+'"},'
+        cadena += '{"IN_CODI":"'+number['id']+'"},'
     cadena = cadena[:-1]
     cadena +=']}'
     #print(cadena)

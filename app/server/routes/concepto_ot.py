@@ -31,7 +31,8 @@ from server.funciones.concepto_ot import (
     regex_codigoDisponible,
     regex_buscarCodigo,
     retrieve_stock_validar,
-    validar_insumo_ot2
+    validar_insumo_ot2,
+    validar_insumo_ot3
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -255,5 +256,6 @@ async def get_concepto_ot_data(id: int):
 #La funcion espera "ConceptoOTSchema"
 async def add_insumo_data_validar_OT(concepto_ot: dict = Body(...)):
     concepto_ot = jsonable_encoder(concepto_ot)   
-    val_concepto_ot = await validar_insumo_ot2(concepto_ot)
+    #val_concepto_ot = await validar_insumo_ot2(concepto_ot)
+    val_concepto_ot = await validar_insumo_ot3(concepto_ot)
     return ResponseModel(val_concepto_ot, "Los insumo OT han sido validados ")

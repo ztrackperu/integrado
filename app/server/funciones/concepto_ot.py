@@ -837,7 +837,19 @@ async def validar_insumo_ot2(data: dict):
     return concepto_ots
 
 #cuando el documento esta vacio y se quiere validar
-async def validar_insumo_ot2(data: dict):
+# HELPER PAR VALIDAR INSUMOS DE OT 
+def insumo_helper_OT2(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        #no incluiremos el _id 
+        "IN_CODI": concepto_ot["IN_CODI"],
+        "IN_ARTI": concepto_ot["IN_ARTI"],
+        "IN_UVTA": concepto_ot["IN_UVTA"],
+        "IN_COST":concepto_ot.get("IN_COST",None),
+        #Lista puede ser nula
+        "stock":  concepto_ot.get("Stock",None),
+    }
+async def validar_insumo_ot3(data: dict):
     if len(data) < 1:
         return False
     concepto_ots = []
@@ -856,7 +868,7 @@ async def validar_insumo_ot2(data: dict):
     print(cadena)
     #tomar los datos de la tabal insumos general y agtregarle el stock si lo hubiese
     async for concepto_ot in invmae_collection.find(cadena):
-        concepto_ots1.append(insumo_helper_OT(concepto_ot))
+        concepto_ots1.append(insumo_helper_OT2(concepto_ot))
     print(concepto_ots1)    
 
     #async for concepto_ot in stock_almacen.find(cadena):

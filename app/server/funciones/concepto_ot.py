@@ -868,7 +868,11 @@ async def validar_insumo_ot3(data: dict):
     print(cadena)
     #tomar los datos de la tabal insumos general y agtregarle el stock si lo hubiese
     async for concepto_ot in invmae_collection.find(cadena):
-        concepto_ots1.append(insumo_helper_OT2(concepto_ot))
+        #concepto_ots1.append(insumo_helper_OT2(concepto_ot))
+        mod = insumo_helper_OT2(concepto_ot)
+        valStock = await stock_almacen.find_one({"Codigo": str(mod['IN_CODI'])})
+        print(valStock['stock'])
+
     print(concepto_ots1)    
 
     #async for concepto_ot in stock_almacen.find(cadena):

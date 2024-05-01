@@ -829,7 +829,7 @@ async def validar_insumo_ot2(data: dict):
     cadena +=']}'
     #print(cadena)
     cadena =json.loads(cadena)
-    #print(cadena)
+    print(cadena)
     #construir un objetivo 
     async for concepto_ot in stock_almacen.find(cadena):
         concepto_ots.append(insumo_helper_OT(concepto_ot))

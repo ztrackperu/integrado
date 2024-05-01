@@ -768,7 +768,7 @@ async def retrieve_stock_validar(id: int) -> dict:
     concepto_ot = await concepto_ot_collection.find_one({"id": int(id)})
     #print(concepto_ot)
     if concepto_ot:
-        print(concepto_ot)
+        #print(concepto_ot)
         #return concepto_ot_helper(concepto_ot) 
         depurar = concepto_ot_helper(concepto_ot) 
         #print(depurar['insumos'])
@@ -833,7 +833,7 @@ async def validar_insumo_ot2(data: dict):
     #construir un objetivo 
     async for concepto_ot in stock_almacen.find(cadena):
         concepto_ots.append(insumo_helper_OT(concepto_ot))
-    #print(concepto_ots)
+    print(concepto_ots)
     return concepto_ots
 
 

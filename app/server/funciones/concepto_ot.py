@@ -872,7 +872,7 @@ async def validar_insumo_ot3(data: dict):
         mod = insumo_helper_OT2(concepto_ot)
         valStock = await stock_almacen.find_one({"Codigo": str(mod['IN_CODI'])})
         print(valStock)
-        print(valStock['Stock'])
+        #print(valStock['Stock'])
 
     print(concepto_ots1)    
 

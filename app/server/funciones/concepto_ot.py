@@ -856,7 +856,7 @@ async def validar_insumo_ot2(data: dict):
     print(cadena)
     #tomar los datos de la tabal insumos general y agtregarle el stock si lo hubiese
     async for concepto_ot in invmae_collection.find(cadena):
-        concepto_ots1.append(concepto_ot)
+        concepto_ots1.append(insumo_helper_OT(concepto_ot))
     print(concepto_ots1)    
 
     #async for concepto_ot in stock_almacen.find(cadena):

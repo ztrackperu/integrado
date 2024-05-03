@@ -72,6 +72,7 @@ class SolicitudSchema(BaseModel):
     #Field(...) hace referencia a que el campo es obligatorio
     c_numot: int = Field(...)
     numSolicitud: int = Field(...)
+    estadoS: int = Field(...)
     solicitud: Optional[List] | None =None
 
     class Config:

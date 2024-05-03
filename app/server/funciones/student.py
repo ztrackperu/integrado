@@ -1,7 +1,5 @@
 from server.database import collection
 
-
-
 student_collection = collection("students_collection")
 
 # helpers

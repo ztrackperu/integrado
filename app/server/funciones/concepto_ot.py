@@ -880,6 +880,21 @@ async def validar_insumo_ot3(data: dict):
     print(concepto_ots1)    
     return concepto_ots1
 
+#procedimiento para Grabado y manipuleo de OT
+#la coleccion general es OTGENERAL_1
+OTGENERAL = collection("OTGENERAL_1")
+
+async def ultimaOt():
+    pip = [
+        {"$sort":{"c_numot":-1}},
+        {"$limit":1},
+        {"$project":{"_id":0,"c_numot":1}},
+    ]
+    concepto_ots = []
+    async for concepto_ot in OTGENERAL.aggregate(pip):
+        concepto_ots.append(concepto_ot)
+    return concepto_ots
+
 
 
 

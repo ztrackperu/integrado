@@ -911,8 +911,8 @@ async def ultimaSolicitud():
     #val_concepto_ot = await guardar_solicitud(concepto_ot)
 
 
-#AQUI SE VALIDA EL GUARDAR SOLICITUD
-async def guardar_solicitud(data: dict):
+#AQUI SE VALIDA EL GUARDAR SOLICITUD  student_data: dict) -> dict
+async def guardar_solicitud(data: dict) -> dict:
     if len(data) < 1:
         return False
     print(data)

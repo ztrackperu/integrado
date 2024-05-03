@@ -907,6 +907,20 @@ async def ultimaSolicitud():
         concepto_ots.append(concepto_ot)
     return concepto_ots
 
+    #val_concepto_ot = await validar_insumo_ot2(concepto_ot) validar_insumo_ot3
+    #val_concepto_ot = await guardar_solicitud(concepto_ot)
+
+
+#AQUI SE VALIDA EL GUARDAR SOLICITUD
+async def guardar_solicitud(data: dict):
+    if len(data) < 1:
+        return False
+    print(data)
+    concepto_ot = await concepto_ot_collection.insert_one(concepto_ot_data)
+
+
+    #print(concepto_ots)
+    return concepto_ot
 
 
 

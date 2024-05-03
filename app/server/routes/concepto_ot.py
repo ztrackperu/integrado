@@ -35,6 +35,7 @@ from server.funciones.concepto_ot import (
     validar_insumo_ot3,
     ultimaOt,
     ultimaSolicitud,
+    guardar_solicitud
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -275,3 +276,15 @@ async def ultimaSolicitudF():
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "problemas al obtener LA ULTIMA SOLICITUD")
+
+#GuardarSolicitud
+
+
+@router.post("/GuardarSolicitud/", response_description="Guardar solicitud en la base de datos.")
+#La funcion espera "ConceptoOTSchema"
+async def add_solicitud(concepto_ot: dict = Body(...)):
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    #val_concepto_ot = await validar_insumo_ot2(concepto_ot) validar_insumo_ot3
+    val_concepto_ot = await guardar_solicitud(concepto_ot)
+    return ResponseModel(val_concepto_ot, "Los insumo OT han sido validados ")
+

@@ -35,7 +35,8 @@ from server.funciones.concepto_ot import (
     validar_insumo_ot3,
     ultimaOt,
     ultimaSolicitud,
-    guardar_solicitud
+    guardar_solicitud,
+    BuscarSolicitud
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -288,3 +289,12 @@ async def add_solicitud(concepto_ot: SolicitudSchema = Body(...)):
     #enviar a la funcion añadir  
     new_concepto_ot = await guardar_solicitud(concepto_ot)
     return ResponseModel(new_concepto_ot, "La solicitud ha sido guardado ")
+
+#BuscarSolicitud
+
+@router.get("/BuscarSolicitud/{id}", response_description="Datos de solicitud") 
+async def BuscarSolicitud_data(id: int):
+    concepto_ot = await BuscarSolicitud(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de la solicitud recuperado exitosamente")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

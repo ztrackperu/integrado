@@ -923,5 +923,24 @@ async def guardar_solicitud(data: dict) -> dict:
     print(res)
     return res
 
+#BuscarSolicitud
+def solicitud_helper(concepto_ot) -> dict: 
+    #print(concepto_ot["rela"])
+    return {
+        #no incluiremos el _id 
+        "c_numot": concepto_ot["c_numot"],
+        "numSolicitud": concepto_ot["numSolicitud"],
+        "estadoS": concepto_ot["estadoS"],
+        "fechaS": concepto_ot["fechaS"],
+        "solicitud":  concepto_ot.get("solicitud",None),
+    }
+# Recuperar un concepto_ot con un ID coincidente
+async def BuscarSolicitud(id: int) -> dict:
+    #print(id)
+    #importante convertir a int cunado se busca a un dato por numero
+    concepto_ot = await solicitudes.find_one({"numSolicitud": int(id)})
+    #print(concepto_ot)
+    if concepto_ot:
+        return solicitud_helper(concepto_ot) 
 
 

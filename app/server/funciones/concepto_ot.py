@@ -916,7 +916,7 @@ async def guardar_solicitud(data: dict):
     if len(data) < 1:
         return False
     print(data)
-    concepto_ot = await concepto_ot_collection.insert_one(concepto_ot_data)
+    concepto_ot = await OTGENERAL.insert_one(data)
 
 
     #print(concepto_ots)

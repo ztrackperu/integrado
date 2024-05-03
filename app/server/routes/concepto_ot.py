@@ -33,7 +33,8 @@ from server.funciones.concepto_ot import (
     retrieve_stock_validar,
     validar_insumo_ot2,
     validar_insumo_ot3,
-    ultimaOt
+    ultimaOt,
+    ultimaSolicitud,
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -262,8 +263,15 @@ async def add_insumo_data_validar_OT(concepto_ot: dict = Body(...)):
     return ResponseModel(val_concepto_ot, "Los insumo OT han sido validados ")
 
 @router.get("/UltimaOT/")
-async def ListaTecnicoOT():
+async def ultimaOtF():
     item_details = await ultimaOt()
     if item_details:
         return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "problemas al obtener el ultimo ot")
+
+@router.get("/UltimaSolicitud/")
+async def ultimaSolicitudF():
+    item_details = await ultimaSolicitud()
+    if item_details:
+        return JSONResponse(item_details)
+    return ErrorResponseModel("Ocurrió un error.", 404, "problemas al obtener LA ULTIMA SOLICITUD")

@@ -917,10 +917,10 @@ async def guardar_solicitud(data: dict) -> dict:
         return False
     print(data)
     concepto_ot = await OTGENERAL.insert_one(data)
-
-
+    if concepto_ot :
+        res = "se guardo"
     #print(concepto_ots)
-    return concepto_ot
+    return res
 
 
 

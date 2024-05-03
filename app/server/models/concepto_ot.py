@@ -68,6 +68,38 @@ class UpdateConceptoOTModel(BaseModel):
             }
         }
 
+class SolicitudSchema(BaseModel):
+    #Field(...) hace referencia a que el campo es obligatorio
+    c_numot: int = Field(...)
+    numSolicitud: int = Field(...)
+    solicitud: Optional[List] | None =None
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "c_numot": 105,
+                "numSolicitud": 1105,
+                "solicitud" :
+                    [
+                        {
+                            "codigo_insumo":"RND2020",
+                            "nombre_insumo":"Casco Blanco",
+                            "medida":"UND",
+                            "cantidad":2
+                        },
+                        {
+                            "codigo_insumo":"RND3133",
+                            "nombre_insumo":"Tornillo 230",
+                            "medida":"UND",
+                            "cantidad":13
+                        },
+                    ]               
+            }
+        }
+
+
+
+
 #respuesta cuando todo esta bien
 def ResponseModel(data, message):
     return {

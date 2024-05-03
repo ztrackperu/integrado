@@ -44,6 +44,7 @@ from server.models.concepto_ot import (
     ConceptoOTSchema,
     UpdateConceptoOTModel,
     ConceptoOTSchemaValidar,
+    SolicitudSchema,
 )
 #aqui se definen las rutas de la API REST
 router = APIRouter()
@@ -279,12 +280,11 @@ async def ultimaSolicitudF():
 
 #GuardarSolicitud
 
-
 @router.post("/GuardarSolicitud/", response_description="Guardar solicitud en la base de datos.")
-#La funcion espera "ConceptoOTSchema"
-async def add_solicitud(concepto_ot: dict = Body(...)):
+async def add_solicitud(concepto_ot: SolicitudSchema = Body(...)):
+    #convertir en json
     concepto_ot = jsonable_encoder(concepto_ot)   
-    #val_concepto_ot = await validar_insumo_ot2(concepto_ot) validar_insumo_ot3
-    val_concepto_ot = await guardar_solicitud(concepto_ot)
-    return ResponseModel(val_concepto_ot, "Los insumo OT han sido validados ")
-
+    #print(concepto_ot)
+    #enviar a la funcion añadir  
+    new_concepto_ot = await guardar_solicitud(concepto_ot)
+    return ResponseModel(new_concepto_ot, "La solicitud ha sido guardado ")

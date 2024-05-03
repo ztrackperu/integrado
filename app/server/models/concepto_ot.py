@@ -73,7 +73,7 @@ class SolicitudSchema(BaseModel):
     c_numot: int = Field(...)
     numSolicitud: int = Field(...)
     estadoS: int = Field(...)
-    FechaS: str = Field(...)
+    fechaS: str = Field(...)
     solicitud: Optional[List] | None =None
 
     class Config:

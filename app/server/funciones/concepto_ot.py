@@ -882,7 +882,7 @@ async def validar_insumo_ot3(data: dict):
 
 #procedimiento para Grabado y manipuleo de OT
 #la coleccion general es OTGENERAL_1
-OTGENERAL = collection("OTGENERAL_1")
+OTGENERAL = collection("OTGENERAL")
 
 async def ultimaOt():
     pip = [

@@ -898,9 +898,9 @@ async def ultimaOt():
 solicitudes = collection("solicitudes")
 async def ultimaSolicitud():
     pip = [
-        {"$sort":{"solicitud_id":-1}},
+        {"$sort":{"numSolicitud":-1}},
         {"$limit":1},
-        {"$project":{"_id":0,"solicitud_id":1}},
+        {"$project":{"_id":0,"numSolicitud":1}},
     ]
     concepto_ots = []
     async for concepto_ot in solicitudes.aggregate(pip):

@@ -106,7 +106,7 @@ class OTSchema(BaseModel):
     c_desequipo:str = Field(...)
     unidad: str = Field(...)
     d_fecdcto: str = Field(...)
-    c_codmonstr = Field(...)
+    c_codmonstr:str = Field(...)
     c_treal:str = Field(...)
     c_asunto: str = Field(...)
     c_supervisa:str = Field(...)

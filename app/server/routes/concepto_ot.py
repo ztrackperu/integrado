@@ -300,7 +300,7 @@ async def BuscarSolicitud_data(id: int):
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
 
 #GuardarSolicitud
-@router.post("/GuardarSolicitud/", response_description="Guardar OT en la base de datos.")
+@router.post("/GuardarOTGeneral/", response_description="Guardar OT en la base de datos.")
 async def add_otGeneral(concepto_ot: OTSchema = Body(...)):
     #convertir en json
     concepto_ot = jsonable_encoder(concepto_ot)   

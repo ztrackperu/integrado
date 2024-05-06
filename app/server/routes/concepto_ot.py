@@ -36,7 +36,8 @@ from server.funciones.concepto_ot import (
     ultimaOt,
     ultimaSolicitud,
     guardar_solicitud,
-    BuscarSolicitud
+    BuscarSolicitud,
+    guardar_otGeneral
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -46,6 +47,7 @@ from server.models.concepto_ot import (
     UpdateConceptoOTModel,
     ConceptoOTSchemaValidar,
     SolicitudSchema,
+    OTSchema,
 )
 #aqui se definen las rutas de la API REST
 router = APIRouter()
@@ -280,7 +282,6 @@ async def ultimaSolicitudF():
     return ErrorResponseModel("Ocurrió un error.", 404, "problemas al obtener LA ULTIMA SOLICITUD")
 
 #GuardarSolicitud
-
 @router.post("/GuardarSolicitud/", response_description="Guardar solicitud en la base de datos.")
 async def add_solicitud(concepto_ot: SolicitudSchema = Body(...)):
     #convertir en json
@@ -291,10 +292,19 @@ async def add_solicitud(concepto_ot: SolicitudSchema = Body(...)):
     return ResponseModel(new_concepto_ot, "La solicitud ha sido guardado ")
 
 #BuscarSolicitud
-
 @router.get("/BuscarSolicitud/{id}", response_description="Datos de solicitud") 
 async def BuscarSolicitud_data(id: int):
     concepto_ot = await BuscarSolicitud(id)
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de la solicitud recuperado exitosamente")
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+#GuardarSolicitud
+@router.post("/GuardarSolicitud/", response_description="Guardar OT en la base de datos.")
+async def add_otGeneral(concepto_ot: OTSchema = Body(...)):
+    #convertir en json
+    concepto_ot = jsonable_encoder(concepto_ot)   
+    #print(concepto_ot)
+    #enviar a la funcion añadir  
+    new_concepto_ot = await guardar_otGeneral(concepto_ot)
+    return ResponseModel(new_concepto_ot, "La solicitud ha sido guardado ")

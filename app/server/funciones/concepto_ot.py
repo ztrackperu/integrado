@@ -943,4 +943,16 @@ async def BuscarSolicitud(id: int) -> dict:
     if concepto_ot:
         return solicitud_helper(concepto_ot) 
 
+#guardar_otGeneral
+async def guardar_otGeneral(data: dict) -> dict:
+    if len(data) < 1:
+        return False
+    print(data)
+    res=""
+    concepto_ot = await OTGENERAL.insert_one(data)
+    if concepto_ot :
+        res = "se guardo"
+    print(res)
+    return res
+
 

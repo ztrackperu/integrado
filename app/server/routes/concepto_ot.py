@@ -37,7 +37,8 @@ from server.funciones.concepto_ot import (
     ultimaSolicitud,
     guardar_solicitud,
     BuscarSolicitud,
-    guardar_otGeneral
+    guardar_otGeneral,
+    BuscarOTGeneral
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -308,3 +309,11 @@ async def add_otGeneral(concepto_ot: OTSchema = Body(...)):
     #enviar a la funcion añadir  
     new_concepto_ot = await guardar_otGeneral(concepto_ot)
     return ResponseModel(new_concepto_ot, "La solicitud ha sido guardado ")
+
+#BuscarOTGeneral
+@router.get("/BuscarOTGeneral/{id}", response_description="Datos de solicitud") 
+async def BuscarOTGeneral_data(id: int):
+    concepto_ot = await BuscarOTGeneral(id)
+    if concepto_ot:
+        return ResponseModel(concepto_ot, "Datos de la OT recuperado exitosamente")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

@@ -955,4 +955,13 @@ async def guardar_otGeneral(data: dict) -> dict:
     print(res)
     return res
 
+# Recuperar un concepto_ot con un ID coincidente
+async def BuscarOTGeneral(id: int) -> dict:
+    #print(id)
+    #importante convertir a int cunado se busca a un dato por numero
+    concepto_ot = await OTGENERAL.find_one({"c_numot": int(id)}).project({"_id":0})
+    #print(concepto_ot)
+    if concepto_ot:
+        return concepto_ot 
+
 

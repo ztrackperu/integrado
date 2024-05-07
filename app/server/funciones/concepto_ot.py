@@ -990,7 +990,7 @@ async def MostrarOT(id: int) -> dict:
 
 async def ListarSolicitudesPendientes():
     pip = [
-        {"$project":{"_id":0,"c_numot":1,"numSolicitud":1,"estadoS":1,"fechaS":1,"Trabajo":1}},        
+        {"$project":{"_id":0,"c_numot":1,"numSolicitud":1,"estadoS":1,"fechaS":1,"Trabajo":1,"TecnicoEncargado":1,"Proveedor":1,"RUC":1}},        
         {"$sort":{"c_numot":-1}}        
     ]
     concepto_ots = []

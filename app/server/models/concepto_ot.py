@@ -74,6 +74,10 @@ class SolicitudSchema(BaseModel):
     numSolicitud: int = Field(...)
     estadoS: int = Field(...)
     fechaS: str = Field(...)
+    Trabajo: str = Field(...)
+    TecnicoEncargado: str = Field(...)
+    Proveedor: str = Field(...)
+    RUC: str = Field(...)
     solicitud: Optional[List] | None =None
 
     class Config:

@@ -986,3 +986,15 @@ async def MostrarOT(id: int) -> dict:
     async for concepto_ot in OTGENERAL.aggregate(pip):
         concepto_ots.append(concepto_ot)
     return concepto_ots
+
+
+async def ListarSolicitudesPendientes():
+    pip = [
+        {"$project":{"_id":0,"c_numot":1,"numSolicitud":1,"estadoS":1,"fechaS":1}},        
+        {"$sort":{"c_numot":-1}}        
+    ]
+    concepto_ots = []
+    async for concepto_ot in solicitudes.aggregate(pip):
+        #print(concepto_ot)
+        concepto_ots.append(concepto_ot)
+    return concepto_ots  

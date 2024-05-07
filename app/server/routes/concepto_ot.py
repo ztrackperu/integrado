@@ -40,6 +40,7 @@ from server.funciones.concepto_ot import (
     guardar_otGeneral,
     BuscarOTGeneral,
     MostrarOT,
+    ListarSolicitudesPendientes
 )
 #Aqui importamos el modelo necesario para la clase 
 from server.models.concepto_ot import (
@@ -325,4 +326,11 @@ async def MostrarOT_data(id: int):
     concepto_ot = await MostrarOT(id)
     if concepto_ot:
         return ResponseModel(concepto_ot, "Datos de la OT recuperado exitosamente")
+    return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")
+
+@router.get("/ListarSolicitudesPendientes/")
+async def ListarSolicitudesPendientesf():
+    item_details = await ListarSolicitudesPendientes()
+    if item_details:
+        return JSONResponse(item_details)
     return ErrorResponseModel("Ocurrió un error.", 404, "ConceptoOT doesn't exist.")

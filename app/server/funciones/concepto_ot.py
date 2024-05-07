@@ -965,3 +965,24 @@ async def BuscarOTGeneral(id: int) -> dict:
         return concepto_ot 
 
 
+async def MostrarOT(id: int) -> dict:
+    pip = [
+        {"$project":{"_id":0,}},
+        {"$match": {"c_numot": id}},  
+        {
+            "$lookup": {
+            "from": 'solicitudes',
+            "localField": 'c_numot',
+            "foreignField": 'c_numot',
+            "as": 'solicitudes',
+            "pipeline": [
+                    {"$project":{"_id":0}} ,
+            ]
+            }
+        }
+    ]
+
+    concepto_ots = []
+    async for concepto_ot in OTGENERAL.aggregate(pip):
+        concepto_ots.append(concepto_ot)
+    return concepto_ots

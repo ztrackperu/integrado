@@ -9,7 +9,7 @@ class NotificacionSchema(BaseModel):
     fechaN: str = Field(...)
     trabajo: str = Field(...)
     perfil: int = Field(...)
-    estadoN: Optional[str] | None =1
+    estadoN: Optional[int] | None =1
     class Config:
         json_schema_extra = {
             "example": {

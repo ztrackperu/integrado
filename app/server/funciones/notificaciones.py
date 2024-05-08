@@ -18,7 +18,7 @@ notificacion_collection = collection("notificaciones")
 # Recuperar todos los notificacions presentes en la base de datos.
 async def retrieve_notificacions():
     notificacions = []
-    async for notificacion in notificacion_collection.find({"$or":[{"estado":1},{"estado":0}]}):
+    async for notificacion in notificacion_collection.find({"estadoN":1}):
         #print(notificacion)
         notificacions.append(notificacion_helper(notificacion))
     return notificacions

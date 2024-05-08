@@ -66,7 +66,7 @@ async def delete_notificacion(id: int):
 # Extraer el ultimo  notificacion de la base de datos en base al campo id
 async def extraer_notificacion()->dict:
     notificacions = []
-    async for notificacion in notificacion_collection.find({"estadoN":1}).sort({"numNotificacion":-1}).limit(1):
+    async for notificacion in notificacion_collection.find({"estadoN":1},{"-id":0,"numNotificacion":1}).sort({"numNotificacion":-1}).limit(1):
         print(notificacion)
         notificacions.append(notificacion_helper(notificacion))
     #se debe extraer el primir resultado

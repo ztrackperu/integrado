@@ -13,6 +13,7 @@ class NotificacionSchema(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
+                "numNotificacion": 1,
                 "asunto": "ENTREGA",
                 "numSolicitud": 1000001, 
                 "numOT": 1001000004, 

@@ -33,7 +33,7 @@ class UpdateNotificacionModel(BaseModel):
     fechaN: Optional[str] | None =None
     trabajo: Optional[str] | None =None
     perfil: Optional[int] | None =None
-    estadoN: Optional[str] | None =None
+    estadoN: Optional[int] | None =None
     class Config:
         json_schema_extra = {
             "example": {

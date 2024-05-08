@@ -2,7 +2,7 @@ use("intranet")
 num = 1001000046
 db.OTGENERAL.aggregate([
     {$project:{_id:0,}},
-    {$match: {c_numot: num}}, 
+    {$match: {c_numot: num}},  
     {
         $lookup: {
           from: 'solicitudes',

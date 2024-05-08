@@ -84,7 +84,7 @@ class SolicitudSchema(BaseModel):
         json_schema_extra = {
             "example": {
                 "c_numot": 105,
-                "numSolicitud": 1105,
+                "numSolicitud": 1105, 
                 "solicitud" :
                     [
                         {

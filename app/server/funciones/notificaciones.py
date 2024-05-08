@@ -67,7 +67,7 @@ async def delete_notificacion(id: int):
 async def extraer_notificacion()->dict:
     notificacions = []
     async for notificacion in notificacion_collection.find({"estadoN":1}).sort({"numNotificacion":-1}).limit(1):
-        #print(notificacion)
+        print(notificacion)
         notificacions.append(notificacion_helper(notificacion))
     #se debe extraer el primir resultado
     return notificacions[0]

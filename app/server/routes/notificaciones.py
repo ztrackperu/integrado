@@ -62,7 +62,7 @@ async def update_notificacion_data(id: int, req: UpdateNotificacionModel = Body(
             "ok",
             "notificacion  updated successfully",
         )
-    return ErrorResponseModel("An error occurred",404,"There was an error updating the ConceptoOT data.",)
+    return ErrorResponseModel("An error occurred",404,"There was an error updating the notificacion data.",)
 
 @router.delete("/{id}", response_description="notificacion data deleted from the database")
 async def delete_notificacion_data(id: int):

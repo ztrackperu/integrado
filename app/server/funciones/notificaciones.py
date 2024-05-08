@@ -50,7 +50,7 @@ async def update_notificacion(id: int, data: dict):
     notificacion = await notificacion_collection.find_one({"numNotificacion": id})
     if notificacion:
         updated_notificacion = await notificacion_collection.update_one(
-            {"id": id}, {"$set": data}
+            {"numNotificacion": id}, {"$set": data}
         )
         if updated_notificacion:
             return True

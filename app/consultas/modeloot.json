@@ -1,0 +1,118 @@
+/** 
+* Paste one or more documents here
+*/
+{
+    "Id": 28343,
+    "c_numot": 1000028244,
+    "c_desequipo": "CAJA ISOTERMICA 5.02 MTS - FF",
+    "unidad": "ZGRU872182-8",
+    "d_fecdcto": "08/03/2024",
+    "c_treal": "OTROS",
+    "c_asunto": "ENCHAPADO DE PUERTA INTERNA Y EXTERNA CAJA ISOTERMICA 5.02 MTS - FF ZGRU872182-8",
+    "c_supervisa": "EMERSON ZABARBURU",
+    "c_solicita": "DOMINGUEZ GARCIA, EDUIR",
+    "c_lugartab": "ALMACEN ZGROUP",
+    "c_ejecuta": "PEREZ QUISPE, RICHARD",
+    "d_fecentrega": "08/03/2024",
+    "c_usrcrea": "GCARRILLO",
+    "d_fcrea": "08/03/2024",
+    "d_fmod": "08/03/2024",
+    "c_estado": 1,
+    "c_refcot": {
+      "$numberLong": "10020234777"
+    },
+    "c_osb": "2 UND PANEL BLANCO PVC",
+    "n_swtapr": 0,
+    "c_nroreporte": "S/N",
+    "c_serieequipo": "S/N",
+    "add1": 0,
+    "add2": 0,
+    "h_inicio": "08:56:05",
+    "programado": 0,
+    "ejecutado": 0,
+    "nro_guia": "S/N",
+    "nro_ticket": "S/N",
+    "DetalleOt": [
+      {
+        "Id": 50134,
+        "c_numot": 1000028244,
+        "n_id": 1,
+        "c_rucprov": {
+          "$numberLong": "20543407969"
+        },
+        "c_nomprov": "METAINER S.A.C.",
+        "concepto": "OTROS ENCHAPADO DE PUERTA INTERNA Y EXTERNA CAJA ISOTERMICA 5.02 MTS - FF ZGRU872182-8",
+        "tdoc": "FACTURA",
+        "monto": 1,
+        "n_cant": 1,
+        "n_igvd": "0,17",
+        "n_totd": "1,18",
+        "montop": 1,
+        "c_tecnico": "PEREZ QUISPE, RICHARD"
+      }
+    ],
+    "Notas": [
+      {
+        "NT_NDOC": "S0026888",
+        "NT_TDOC": "S",
+        "NT_TRAN": 10,
+        "NT_REMI": "¥0010028244",
+        "NT_TREM": "¥",
+        "NT_SERIR": 1,
+        "NT_DOCR": 28244,
+        "NT_CCLI": "CLI00000298",
+        "NT_FDOC": "3/8/2024",
+        "NT_ESTA": 3,
+        "NT_TIPO": "C",
+        "NT_FREG": "3/8/2024",
+        "NT_OPER": "ASISTALMACEN",
+        "n_idreg": 46374,
+        "n_id": 48074,
+        "NT_TCAMB": 0,
+        "NT_MONE": 0,
+        "NT_SWOC": 0,
+        "NT_FGUI": "3/8/2024",
+        "NT_CTR": {
+          "$numberLong": "20543407969"
+        },
+        "NT_GTR": "¥/0010028244",
+        "NT_CLAPC": "P",
+        "NT_GPRV": "¥0010028244",
+        "NT_DATE": "3/8/2024 15:04",
+        "NT_TITRA": "F",
+        "NT_MONEG": 0,
+        "NT_MONTO": 0,
+        "NT_ESTIBA": 0,
+        "c_codcia": "01",
+        "c_codtda": "000",
+        "c_codalm": 1,
+        "c_codalm_d": "ALMDES",
+        "c_NumOT": 1000028244,
+        "NT_RESPO": "PEREZ QUISPE, RICHARD",
+        "c_motivo": "ENTREGA",
+        "DetalleNota": [
+          {
+            "NT_NDOC": "S0026888",
+            "NT_TDOC": "S",
+            "NT_CART": "INDND0405",
+            "NT_CUND": "UND",
+            "NT_CANT": 2,
+            "NT_PREC": 0,
+            "NT_COST": 0,
+            "NT_FREG": "3/8/2024",
+            "NT_OPER": "ASISTALMACEN",
+            "n_idreg": 46374,
+            "n_id": 129380,
+            "NT_TMOV": "C",
+            "NT_FLETE": 0,
+            "c_codcia": "01",
+            "c_codtda": "000",
+            "c_codalm": "000001",
+            "c_producto": "010",
+            "n_preciocost": 0,
+            "n_preciovta": 0
+          }
+        ]
+      }
+    ]
+  }
